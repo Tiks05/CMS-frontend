@@ -17,7 +17,10 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+      // 1. 配置 ElementPlus 采用 sass 样式系统（才能覆盖颜色变量）
+      ElementPlusResolver({ importStyle: 'sass' }),
+      ],
     }),
   ],
   resolve: {
@@ -25,4 +28,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 自动引入全局样式变量文件
+        additionalData: `
+        @use "@/styles/element/index.scss" as *;
+        `,
+      }
+    }
+  }
 })
