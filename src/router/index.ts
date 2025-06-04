@@ -3,32 +3,24 @@ import type { RouteRecordRaw } from 'vue-router'
 
 // 引入路由模块
 import loginRoutes from './routes/login'
+import homeRoutes from './routes/home'
 
-// 所有路由统一汇总
+// 汇总所有路由
 const routes: RouteRecordRaw[] = [
-  ...loginRoutes
-  // 未来你还可以加入: ...homeRoutes, ...articleRoutes 等
+  ...homeRoutes,   // ✅ home.ts 中的 `/` 重定向 和 `/home`
+  ...loginRoutes   // `/login` 登录页面
 ]
 
 // 创建 router 实例
 const router = createRouter({
-  history: createWebHistory(), // 默认使用 HTML5 模式
+  history: createWebHistory(),
   routes
 })
 
-// 全局路由守卫（可选）
+// 路由守卫（可选）
 router.beforeEach((to, from, next) => {
-  // 设置页面标题
-  if (to.meta.title) {
-    document.title = String(to.meta.title)
-  }
-
-  // 登录鉴权逻辑（可选扩展）
-  // const userStore = useUserStore()
-  // if (to.meta.requiresAuth && !userStore.isLogin) {
-  //   return next('/login')
-  // }
-
+  document.title = 'CMS_文章管理系统'
+  // 权限校验预留（未启用）
   next()
 })
 

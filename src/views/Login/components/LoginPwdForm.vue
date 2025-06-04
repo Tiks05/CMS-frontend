@@ -1,7 +1,7 @@
 <template>
   <!-- 返回箭头 + 标题 -->
-  <div class="back-tab" @click="goToSmsLogin">
-    <img src="@/assets/icons/arrow-left.svg" class="back-icon" />
+  <div class="back-tab" @click="goTo('/login/sms')">
+    <img :src="arrowLeft" class="back-icon" />
     密码登录
   </div>
 
@@ -25,7 +25,7 @@
         class="input-rounded"
       >
         <template #suffix>
-          <span class="forgot-text" @click="goToReset">忘记密码</span>
+          <span class="forgot-text" @click="goTo('/login/reset')">忘记密码</span>
         </template>
       </el-input>
     </el-form-item>
@@ -56,10 +56,15 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { useUserStore } from '@/stores/useUserStore'
+import { loginByPassword } from '@/apis/user'
+import { useGoTo } from '@/composables/useGoTo'
 
-const router = useRouter()
+const { goTo } = useGoTo()
+const userStore = useUserStore()
+const arrowLeft = new URL('@/assets/icons/arrow-left/icons8-arrow-50.png', import.meta.url).href
 
 const formRef = ref<FormInstance>()
 const form = reactive({
@@ -74,16 +79,24 @@ const canSubmit = computed(() =>
   form.agree
 )
 
-const handleLogin = () => {
-  console.log('✅ 密码登录：', form)
-}
+const handleLogin = async () => {
+  await formRef.value?.validate()
+  try {
+    const res = await loginByPassword(form.account, form.password)
 
-const goToSmsLogin = () => {
-  router.push('/login/sms')
-}
-
-const goToReset = () => {
-  router.push('/login/reset')
+    userStore.setUser({
+      id: res.data.user.id,
+      username: res.data.user.nickname,
+      avatar: res.data.user.avatar,
+      role: res.data.user.role,
+      token: res.data.token
+    })
+    
+    ElMessage.success('登录成功')
+    goTo('/home')
+  } catch (err: any) {
+    ElMessage.error(err?.message || '登录失败')
+  }
 }
 
 const rules: FormRules = {

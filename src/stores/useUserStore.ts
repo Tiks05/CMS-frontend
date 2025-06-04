@@ -3,8 +3,9 @@ import { defineStore } from 'pinia'
 interface UserInfo {
   id: number
   username: string
-  role: 'guest' | 'user' | 'author' | 'admin'
-  token?: string // 可选，如果你后续启用了 JWT
+  role: 'user' | 'guest' | 'author' | 'admin'
+  token?: string
+  avatar?: string
 }
 
 export const useUserStore = defineStore('user', {
@@ -24,9 +25,8 @@ export const useUserStore = defineStore('user', {
 
   actions: {
     setUser(user: UserInfo) {
-      this.user = user
-      // 本地持久化：如需在刷新后仍保留用户信息
-      localStorage.setItem('user', JSON.stringify(user))
+      this.user = { ...user }
+      localStorage.setItem('user', JSON.stringify(this.user))
     },
 
     loadUserFromStorage() {

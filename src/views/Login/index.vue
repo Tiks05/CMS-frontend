@@ -2,12 +2,14 @@
   <!-- 顶部导航 -->
   <div class="top-nav">
     <div class="nav-left">
-      <img src="/icons8-firebase-undefined-32.png" class="nav-logo" />
+      <img :src="logo" class="nav-logo" />
       CMS
+      <span class="divider">|</span>
+      <span class="nav-item-left" @click="goTo('/author')">作家专区</span>
     </div>
     <div class="nav-right">
-      <span class="nav-item" @click="goAsGuest">游客登录</span>
-      <span class="nav-item" @click="goAuthorBenefit">作家福利</span>
+      <span class="nav-item-right" @click="goAsGuest">游客登录</span>
+      <span class="nav-item-right" @click="goAuthorBenefit">作家福利</span>
     </div>
   </div>
 
@@ -51,10 +53,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useGoTo } from '@/composables/useGoTo'
 
+const { goTo } = useGoTo()
 const router = useRouter()
 const videoLoaded = ref(false)
+
 const poster = new URL('@/assets/images/welcome.png', import.meta.url).href
+const logo = new URL('@/assets/icons/logo/icons8-firebase-undefined-32.png', import.meta.url).href
 
 const goAsGuest = () => {
   router.push('/home') // 游客登录跳转首页
@@ -85,7 +91,6 @@ const goAuthorBenefit = () => {
 
 .nav-left {
   font-size: 20px;
-  /* font-weight: bold; */
   line-height: 1; /* ✅ 避免字体偏移 */
   height: 24px;    /* ✅ 与右边文字高度保持一致 */
   display: flex;
@@ -104,18 +109,20 @@ const goAuthorBenefit = () => {
   gap: 24px;
 }
 
-.nav-item {
+.nav-item-left,
+.nav-item-right {
   cursor: pointer;
   transition: color 0.2s ease;
+  font-size: 14px;
 }
 
-.nav-item:hover {
+.nav-item-right:hover {
   color: #ff8140;
 }
 
 .nav-logo {
   width: 26px;
-  margin-right: 3px;
+  margin-right: 8px;
   object-fit: contain;
 }
 
@@ -180,5 +187,13 @@ const goAuthorBenefit = () => {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
   z-index: 2;
+}
+
+.divider {
+  margin: 0 8px; /* 分隔符两边留空 */
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  user-select: none;
+  font-weight: normal;
 }
 </style>

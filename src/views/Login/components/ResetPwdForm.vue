@@ -1,6 +1,6 @@
 <template>
   <!-- 返回箭头 + 标题 -->
-  <div class="back-tab" @click="goBack">
+  <div class="back-tab" @click="goTo('/login/pwd')">
     <img src="@/assets/icons/arrow-left.svg" class="back-icon" />
     密码重置
   </div>
@@ -76,11 +76,10 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
+import { useGoTo } from '@/composables/useGoTo'
 
-const router = useRouter()
-const goBack = () => router.back()
+const { goTo } = useGoTo()
 
 const formRef = ref<FormInstance>()
 const form = reactive({

@@ -1,19 +1,19 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #ff8140, // ✅ 主色：番茄橙
+      'base': #fa1f1f, // ✅ 主色：番茄红
     ),
     'success': (
-      'base': #27ba9b, // ✅ 成功：青绿色
+      'base': #24cc43, // ✅ 成功：亮绿
     ),
     'warning': (
-      'base': #ffb302, // ✅ 警告：亮黄
+      'base': #fcab0b, // ✅ 警告：亮黄（略带橙）
     ),
     'danger': (
-      'base': #e26237, // ✅ 危险：橙红
+      'base': #e6353e, // ✅ 危险：深红（更沉稳）
     ),
     'error': (
-      'base': #cf4444, // ✅ 错误：红
+      'base': #ee1a25, // ✅ 错误：同 danger，统一调性
     ),
   )
 );

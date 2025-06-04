@@ -14,7 +14,7 @@ const loginRoutes: RouteRecordRaw[] = [
       {
         path: 'sms',
         name: 'LoginSms',
-        component: () => import('@/views/Login/components/LoginForm.vue → LoginSmsForm.vue'),
+        component: () => import('@/views/Login/components/LoginSmsForm.vue'),
         meta: {
           title: '验证码登录'
         }
