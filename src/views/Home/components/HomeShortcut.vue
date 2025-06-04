@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { useGoTo } from '@/composables/useGoTo'
 
 const arrowRight = new URL('@/assets/icons/arrow-right/icons8-arrow-50.png', import.meta.url).href
@@ -36,10 +35,8 @@ const shortcuts = [
 
 <style scoped>
 .home-shortcut-wrapper {
-  width: 1300px;
   height: 88px;
-  margin: auto;
-  padding: 0 20px;
+  margin: 0 auto;
 }
 
 .shortcut-list {

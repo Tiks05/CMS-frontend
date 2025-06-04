@@ -128,7 +128,6 @@ const hideDropdown = () => {
 <style scoped>
 .header {
   width: 100%;
-  height: 64px;
   position: fixed;
   top: 0;
   left: 0;
@@ -137,12 +136,13 @@ const hideDropdown = () => {
 }
 
 .header-inner {
+  width: 1240px;
+  padding: 0 10px;
+  margin: 0 360px 0 320px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 70vw;
-  height: 64px;
-  margin: 0 auto;
 }
 
 .logo {
@@ -166,8 +166,8 @@ const hideDropdown = () => {
 .nav-list {
   display: flex;
   justify-content: center;
-  gap: 60px;
-  margin: 0 100px 0 390px;
+  margin: 0 80px 0 280px;
+  gap: 68px;
   flex: 1;
   white-space: nowrap;
 }
