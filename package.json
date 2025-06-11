@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -16,6 +16,7 @@
     "axios": "^1.9.0",
     "element-plus": "^2.9.10",
     "pinia": "^3.0.1",
+    "swiper": "^11.2.8",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

@@ -1,106 +1,59 @@
 <template>
-  <div class="banner-wrapper">
-    <div
-      v-for="(img, index) in images"
-      :key="index"
-      :class="['banner-img', { active: currentIndex === index }]"
-      :style="{ backgroundImage: `url(${img})` }"
-    ></div>
-
-    <!-- 自定义扁条指示器 -->
-    <div class="custom-indicator">
-      <span
-        v-for="(_, i) in images"
-        :key="i"
-        :class="['dot', { active: currentIndex === i }]"
-        @click="switchTo(i)"
-      ></span>
-    </div>
-  </div>
+	<div class="index_banner">
+		<swiper :modules="[Pagination,EffectFade,Autoplay]" :pagination="{ clickable: true }" @swiper="onSwiper" :effect="'fade'" :loop="true" :autoplay="{delay: 3000}">
+			<swiper-slide v-for="(slide, index) in images" :key="index">
+				<div class="slide-content">
+					<img :src="slide" alt="" />
+				</div>
+			</swiper-slide>
+		</swiper>
+	</div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+	import { ref, onMounted, onBeforeUnmount } from 'vue'
+	import { Swiper, SwiperSlide } from 'swiper/vue';
+	import { Pagination, EffectFade ,Autoplay } from 'swiper/modules';
+	import 'swiper/css';
+	import 'swiper/css/pagination';
+	import 'swiper/css/effect-fade';
+	import 'swiper/css/autoplay';
+	const images = [
+		new URL('@/assets/images/HomeBKG1.jpg', import.meta.url).href,
+		new URL('@/assets/images/HomeBKG2.jpg', import.meta.url).href,
+		new URL('@/assets/images/HomeBKG3.jpg', import.meta.url).href,
+		new URL('@/assets/images/HomeBKG4.jpg', import.meta.url).href
+	]
 
-const images = [
-  new URL('@/assets/images/HomeBKG1.jpg', import.meta.url).href,
-  new URL('@/assets/images/HomeBKG2.jpg', import.meta.url).href,
-  new URL('@/assets/images/HomeBKG3.jpg', import.meta.url).href,
-  new URL('@/assets/images/HomeBKG4.jpg', import.meta.url).href
-]
-
-const currentIndex = ref(0)
-let timer: number | null = null
-
-const startLoop = () => {
-  timer = window.setInterval(() => {
-    currentIndex.value = (currentIndex.value + 1) % images.length
-  }, 5000)
-}
-
-const switchTo = (i: number) => {
-  currentIndex.value = i
-}
-
-onMounted(() => {
-  startLoop()
-})
-
-onBeforeUnmount(() => {
-  if (timer) clearInterval(timer)
-})
+	const onSwiper = (swiper : any) => {
+		setTimeout(() => swiper.update(), 100);
+	};
 </script>
 
-<style scoped>
-.banner-wrapper {
-  position: relative;
-  width: 100vw;
-  height: 380px;
-  overflow: hidden;
-}
+<style>
+	.index_banner {
+		width: 100%;
+	}
 
-.banner-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 380px;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: 0;
-}
+	.index_banner img {
+		width: 100%;
+		vertical-align: middle;
+	}
 
-.banner-img.active {
-  opacity: 1;
-  z-index: 1;
-}
+	.index_banner .swiper-pagination {
+		bottom: 18px;
+	}
 
-/* ✅ 提示：指示器始终浮在最上面 */
-.custom-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 10; /* ✅ 保证高于图片 */
-  pointer-events: auto; /* ✅ 确保能点到 */
-}
+	.index_banner .swiper-pagination-bullet {
+		width: 24px;
+		cursor: pointer;
+		height: 2px;
+		opacity: 1;
+		background-color: rgba(255, 255, 255, 1);
+		border-radius: 0;
+	}
 
-.dot {
-  width: 30px;
-  height: 2px;
-  background-color: #ffffff;
-  opacity: 0.6;
-  border-radius: 2px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #ff5722;
-  opacity: 1;
-}
+	.index_banner .swiper-pagination-bullet.swiper-pagination-bullet-active {
+		background-color: #fa6725;
+	}
 </style>

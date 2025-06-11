@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header :class="['header', { scrolled: isScrolled }]">
     <div class="header-inner">
       <!-- LOGO 区域 -->
       <div class="logo">
@@ -23,16 +23,15 @@
       <div class="right">
         <!-- 搜索框 -->
         <el-input
-         v-model="searchText"
-         placeholder="请输入书名或作者名"
-         class="search-input"
-         size="large"
-         clearable
-       >
-         <template #suffix>
-           <el-icon><Search /></el-icon>
-         </template>
-       </el-input>
+          v-model="searchText"
+          placeholder="请输入书名或作者名"
+          :class="['search-input', { 'scrolled-input': isScrolled }]"
+          clearable
+        >
+          <template #suffix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
 
         <span class="divider">|</span>
 
@@ -53,7 +52,7 @@
             <img :src="userStore.user?.avatar || defaultAvatar" class="avatar" />
             <span class="auth-username">{{ displayName }}</span>
           </div>
-        
+
           <div class="dropdown-panel" v-show="dropdownVisible">
             <div class="dropdown-item" @click="goTo('/profile')">
               <img :src="iconUpdate" class="dropdown-icon" />
@@ -71,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/useUserStore'
 import { useGoTo } from '@/composables/useGoTo'
@@ -107,8 +106,7 @@ const displayName = computed(() => {
   return userStore.user?.id?.toString().slice(0, 3) || '用户'
 })
 
-// 👇 dropdown 显示控制（含延迟隐藏）
-
+// dropdown 显示控制
 const dropdownVisible = ref(false)
 let timer: number | null = null
 
@@ -120,9 +118,22 @@ const showDropdown = () => {
 const hideDropdown = () => {
   timer = window.setTimeout(() => {
     dropdownVisible.value = false
-  }, 300) // 延迟300ms再隐藏，避免点不到
+  }, 300)
 }
 
+// 滚动监听逻辑
+const isScrolled = ref(false)
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 10
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>
@@ -133,12 +144,17 @@ const hideDropdown = () => {
   left: 0;
   z-index: 100;
   background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+  background: #fff;
+  box-shadow: 0 1px 0 #e0e0e0;
 }
 
 .header-inner {
   width: 1240px;
-  padding: 0 10px;
-  margin: 0 360px 0 320px;
+  margin: 0 auto;
   height: 64px;
   display: flex;
   align-items: center;
@@ -166,7 +182,7 @@ const hideDropdown = () => {
 .nav-list {
   display: flex;
   justify-content: center;
-  margin: 0 80px 0 280px;
+  margin: 0 70px 0 280px;
   gap: 68px;
   flex: 1;
   white-space: nowrap;
@@ -212,10 +228,12 @@ const hideDropdown = () => {
   width: 180px;
   height: 28px;
   border-radius: 999px;
-  background: rgba(255, 255, 255);
-  backdrop-filter: blur(4px);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #fff;
   transition: all 0.3s ease;
+}
+
+.search-input.scrolled-input {
+  background: #f5f5f5;
 }
 
 .search-input :deep(.el-input__wrapper) {
@@ -232,7 +250,7 @@ const hideDropdown = () => {
 .search-input :deep(.el-input__inner) {
   height: 32px;
   line-height: 32px;
-  font-size: 11px;
+  font-size: 12px;
   padding: 0;
   background-color: transparent;
   border: none;
