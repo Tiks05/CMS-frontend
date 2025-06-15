@@ -17,10 +17,10 @@
 				</div>
 			</div>
 			<div class="pic1">
-				<img src="@/assets/images/recommend1.png" alt="" />
+				<img src="@/assets/images/home/recommend/recommend-1.png" alt="" />
 			</div>
 			<div class="pic2">
-				<img src="@/assets/images/recommend2.png" alt="" />
+				<img src="@/assets/images/home/recommend/recommend-2.png" alt="" />
 			</div>
 		</div>
 		<div class="list list_two" :class="isOpen?'list_two_open':''">
@@ -43,10 +43,10 @@
 
 
 			<div class="pic3">
-				<img src="@/assets/images/recommend3.png" alt="" />
+				<img src="@/assets/images/home/recommend/recommend-3.png" alt="" />
 			</div>
 			<div class="pic4">
-				<img src="@/assets/images/recommend4.png" alt="" />
+				<img src="@/assets/images/home/recommend/recommend-4.png" alt="" />
 			</div>
 			<div class="line"></div>
 
@@ -225,8 +225,8 @@ onMounted(() => { fetchData() })
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
+		line-clamp: 2;
 	}
 
 	.recommend_wrapper .book_list .item:hover .name {

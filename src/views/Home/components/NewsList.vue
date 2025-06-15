@@ -53,12 +53,9 @@ onMounted(async () => {
 		position: absolute;
 		width: 31px;
 		height: 32px;
-		background-image: url('@/assets/images/tit1.png');
+		background-image: url('@/assets/images/home/news-list/tit-1.png');
 		background-size: 100% 100%;
 	}
-
-
-	.list {}
 
 	.list .item {
 		position: relative;

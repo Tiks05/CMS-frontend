@@ -7,9 +7,8 @@
 			</div>
 			<div class="type_list">
 				<span v-for="(item, index) in sortlist" :key="index" class="custom-pagination-bullet"
-					:class="{ 'on': activeIndex === index }" @click="goToSlide(index)">{{item.category_type}}</span>
+					:class="{ 'on': activeIndex === index }" @click="goToSlide(index)">{{item.plot_type}}</span>
 			</div>
-
 
 			<div class="sort_swiper">
 				<swiper :modules="[Navigation,Pagination,Autoplay]" :loop="true" :autoplay="{delay: 3000000}"
@@ -17,7 +16,7 @@
 					<swiper-slide class="slide" v-for="(item, i) in sortlist" :key="i">
 						<div class="item">
 							<div class="title">
-								<h3>{{item.category_type}}·阅读榜</h3>
+								<h3>{{item.plot_type}}·阅读榜</h3>
 								<p>仅展示原创作品，统计时间截止至{{ yesterdayDate }} 24:00</p>
 							</div>
 
@@ -38,7 +37,7 @@
 
 						<div class="item item_new">
 							<div class="title">
-								<h3>{{item.category_type}}·新书榜</h3>
+								<h3>{{item.plot_type}}·新书榜</h3>
 								<p>仅展示原创作品，统计时间截止至{{ yesterdayDate }} 24:00</p>
 							</div>
 
@@ -93,7 +92,7 @@ interface SortItem {
 }
 
 interface SortResponse {
-  category_type: string;
+  plot_type: string;
   child: SortItem[];
   new_child: SortItem[];
 }
@@ -273,7 +272,7 @@ const goToSlide = (index: number) => {
 		background-color: #fff;
 		border-radius: 8px;
 		overflow: hidden;
-		background-image: url('/src/assets/images/s2.png');
+		background-image: url('/src/assets/images/home/sort/bkg-left.png');
 		background-size: 100% auto;
 		background-position: top center;
 		background-repeat: no-repeat;
@@ -315,7 +314,7 @@ const goToSlide = (index: number) => {
 
 
 	.sort_swiper .slide .item.item_new {
-		background-image: url('/src/assets/images/s3.png');
+		background-image: url('/src/assets/images/home/sort/bkg-right.png');
 	}
 
 	.sort_swiper .slide .item .p {

@@ -71,11 +71,6 @@ const onSlideChange = () => {
   }
 }
 
-const updateArrowStatus = (swiper: any) => {
-  isBeginning.value = swiper.isBeginning
-  isEnd.value = swiper.isEnd
-}
-
 const slidePrev = () => {
   if (swiperInstance.value) {
     swiperInstance.value.slidePrev()

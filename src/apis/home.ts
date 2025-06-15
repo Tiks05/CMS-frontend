@@ -19,7 +19,7 @@ export const getAdaptList = (limit?: number) =>
   })
 
 // 获取首页排行榜
-export const fetchRankingList = (reader_type: string, category_type: string) =>
+export const fetchRankingList = (reader_type: string, plot_type: string) =>
   request.get('/home/ranking', {
-    params: { reader_type, category_type }
+    params: { reader_type, plot_type }
   })

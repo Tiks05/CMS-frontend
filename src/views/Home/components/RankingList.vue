@@ -149,12 +149,12 @@ onMounted(async () => {
 
 	.ranking_title h2:before {
 		left: 0;
-		background-image: url('@/assets/images/tit1.svg');
+		background-image: url('@/assets/images/home/ranking-list/tit-1.svg');
 	}
 
 	.ranking_title h2:after {
 		right: 0;
-		background-image: url('@/assets/images/tit2.svg')
+		background-image: url('@/assets/images/home/ranking-list/tit-2.svg')
 	}
 
 	.ranking_swiper {
@@ -188,18 +188,18 @@ onMounted(async () => {
 
 	.ranking_swiper .item .con.con1 {
 		background-color: #fef9f6;
-		background-image: url('/src/assets/images/book_bg.svg');
+		background-image: url('/src/assets/images/home/ranking-list/book_bg.svg');
 
 	}
 
 	.ranking_swiper .item .con.con2 {
 		background-color: #f5faf8;
-		background-image: url('/src/assets/images/book_bg.svg');
+		background-image: url('/src/assets/images/home/ranking-list/book_bg.svg');
 	}
 
 	.ranking_swiper .item .con.con3 {
 		background-color: #fffcf3;
-		background-image: url('/src/assets/images/book_bg.svg');
+		background-image: url('/src/assets/images/home/ranking-list/book_bg.svg');
 	}
 
 	.ranking_swiper .item .txt {

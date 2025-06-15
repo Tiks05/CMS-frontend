@@ -8,8 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Adapt: typeof import('./src/components/Module/Adapt.vue')['default']
+    Banner: typeof import('./src/components/Module/Banner.vue')['default']
     BaseButton: typeof import('./src/components/UI/BaseButton.vue')['default']
     BaseDialog: typeof import('./src/components/UI/BaseDialog.vue')['default']
+    BookList: typeof import('./src/components/Module/BookList.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
@@ -21,8 +24,13 @@ declare module 'vue' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElRow: typeof import('element-plus/es')['ElRow']
+    Food: typeof import('./src/components/Layout/Food.vue')['default']
+    Footer: typeof import('./src/components/Layout/Footer.vue')['default']
+    Header: typeof import('./src/components/Layout/Header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    HomeShortcut: typeof import('./src/components/Module/HomeShortcut.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
