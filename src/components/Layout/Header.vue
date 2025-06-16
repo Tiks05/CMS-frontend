@@ -1,13 +1,13 @@
 <template>
   <header :class="['header', { scrolled: isScrolled }]">
     <div class="header-inner">
-      <!-- LOGO 区域 -->
-      <div class="logo">
+      <!-- 左侧 Logo -->
+      <div class="header-left clickable" @click="goTo('/home')">
         <img :src="logo" class="nav-logo" />
         <span class="logo-text">CMS</span>
       </div>
 
-      <!-- 导航菜单 -->
+      <!-- 中间导航 -->
       <nav class="nav-list">
         <span
           v-for="item in props.menus"
@@ -20,8 +20,7 @@
       </nav>
 
       <!-- 右侧区域 -->
-      <div class="right">
-        <!-- 搜索框 -->
+      <div class="header-right">
         <el-input
           v-model="searchText"
           placeholder="请输入书名或作者名"
@@ -35,13 +34,11 @@
 
         <span class="divider">|</span>
 
-        <!-- 未登录状态 -->
         <div class="auth-links" v-if="!userStore.isLogin">
           <span class="auth-link" @click="goTo('/login')">登录</span>
           <span class="auth-link" @click="goTo('/login')">注册</span>
         </div>
 
-        <!-- 登录状态头像区域 -->
         <div
           class="auth-dropdown"
           v-else
@@ -52,7 +49,6 @@
             <img :src="userStore.user?.avatar || defaultAvatar" class="avatar" />
             <span class="auth-username">{{ displayName }}</span>
           </div>
-
           <div class="dropdown-panel" v-show="dropdownVisible">
             <div class="dropdown-item" @click="goTo('/profile')">
               <img :src="iconUpdate" class="dropdown-icon" />
@@ -97,11 +93,10 @@ const handleLogout = () => {
 }
 
 const displayName = computed(() => {
-  if (userStore.user?.username?.trim()) return userStore.user.username
+  if (userStore.user?.nickname?.trim()) return userStore.user.nickname
   return userStore.user?.id?.toString().slice(0, 3) || '用户'
 })
 
-// dropdown 显示控制
 const dropdownVisible = ref(false)
 let timer: number | null = null
 
@@ -109,26 +104,18 @@ const showDropdown = () => {
   if (timer) clearTimeout(timer)
   dropdownVisible.value = true
 }
-
 const hideDropdown = () => {
   timer = window.setTimeout(() => {
     dropdownVisible.value = false
   }, 300)
 }
 
-// 滚动监听逻辑
 const isScrolled = ref(false)
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 10
 }
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+onMounted(() => window.addEventListener('scroll', handleScroll))
+onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <style scoped>
@@ -156,10 +143,11 @@ onBeforeUnmount(() => {
   justify-content: space-between;
 }
 
-.logo {
+/* 左侧 LOGO */
+.header-left {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  cursor: pointer;
 }
 
 .nav-logo {
@@ -174,13 +162,14 @@ onBeforeUnmount(() => {
   color: #222;
 }
 
+/* 中间导航栏 */
 .nav-list {
+  flex: 1;
   display: flex;
   justify-content: center;
-  margin: 0 70px 0 280px;
   gap: 68px;
-  flex: 1;
   white-space: nowrap;
+  margin-left: 235px;
 }
 
 .nav-item {
@@ -190,11 +179,13 @@ onBeforeUnmount(() => {
   cursor: pointer;
   padding: 4px 0;
 }
-
+.nav-item.active {
+  color: #000;
+  font-weight: bold;
+}
 .nav-item:hover::after {
   width: 100%;
 }
-
 .nav-item::after {
   content: '';
   position: absolute;
@@ -206,17 +197,13 @@ onBeforeUnmount(() => {
   transition: width 0.3s ease;
 }
 
-.nav-item.active {
-  color: #000;
-  font-weight: bold;
-}
-
-.right {
+/* 右侧区域 */
+.header-right {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-right: 100px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .search-input {
@@ -257,8 +244,7 @@ onBeforeUnmount(() => {
 
 .divider {
   color: #ccc;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 12px;
   font-size: 14px;
   user-select: none;
   line-height: 1;
@@ -271,7 +257,6 @@ onBeforeUnmount(() => {
   font-size: 14px;
   color: #222;
 }
-
 .auth-link:hover {
   color: #f85959;
   cursor: pointer;

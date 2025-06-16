@@ -41,14 +41,15 @@ import BookCard from './BookCard.vue'
 import { getBookList } from '@/apis/library'
 
 interface Book {
-  id: number
-  title: string
-  author: string
-  status: string
-  wordCount: number
-  intro: string
-  coverUrl: string
-  updatedAt: string
+	id: number
+	title: string
+	author: string
+	status: string
+	wordCount: number
+	intro: string
+	coverUrl: string
+	updatedAt: string
+	path: string
 }
 
 // 接收父组件传来的筛选条件

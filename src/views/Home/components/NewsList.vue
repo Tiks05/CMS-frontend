@@ -24,7 +24,8 @@ const newslist = ref<any[]>([])
 const { goTo } = useGoTo()
 
 onMounted(async () => {
-  const res = await fetchNewsList()
+	const limit = 8
+  const res = await fetchNewsList({ limit })
   newslist.value = res.data
 })
 </script>

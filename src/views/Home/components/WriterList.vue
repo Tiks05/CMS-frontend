@@ -195,6 +195,7 @@ const slideNext = () => {
 		mask: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU1IiBoZWlnaHQ9IjEyNiIgdmlld0JveD0iMCAwIDE1NSAxMjYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMTIuMjA3IDExMy41ODFDMTI3LjEyOSAxMDguNjYxIDE0MS40NDkgMTAyLjM2MyAxNTUgOTQuODE3OVYwLjAxMDI1MzlIMFYxMjMuNTI0QzM3LjM3NSAxMjguODU2IDc1Ljc4NTIgMTI1LjU5MSAxMTIuMjA3IDExMy41ODFaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K);
 		border-top-left-radius: 12px;
 		border-top-right-radius: 12px;
+		cursor: pointer;
 	}
 
 	.writer_swiper {

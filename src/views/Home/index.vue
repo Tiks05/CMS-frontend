@@ -3,7 +3,7 @@
 		<Header :menus="navMenus" />
 		<Banner />
 		<!-- 快捷入口 -->
-		<HomeShortcut />
+		<HomeShortcut :shortcuts="shortcutList" />
 		<div class="index_wrapper">
 			<!-- 排行榜 + 资讯 -->
 			<div class="ranking_news_wrapper">
@@ -24,9 +24,7 @@
 		<!-- 最新更新 -->
 		<Recently />
 		<!-- 底部 -->
-		<Food />
-
-
+		<Footer />
 	</div>
 </template>
 
@@ -42,7 +40,7 @@ import Sort from '@/views/Home/components/Sort.vue'
 import Adapt from '@/components/Module/Adapt.vue'
 import BookList from '@/components/Module/BookList.vue'
 import Recently from '@/views/Home/components/Recently.vue'
-import Food from '@/components/Layout/Footer.vue'
+import Footer from '@/components/Layout/Footer.vue'
 
 const navMenus = [
 	{ path: '/home', label: '首页' },
@@ -50,6 +48,24 @@ const navMenus = [
 	{ path: '/bookshelf', label: '书架' },
 	{ path: '/author', label: '作家专区' },
 	{ path: '/copyright', label: '版权专区' }
+]
+
+const shortcutList = [
+  { 
+		title: '作家福利', 
+		desc: '番茄作家福利区', 
+		path: '/benefit' 
+	},
+  { 
+		title: '作家专区', 
+		desc: '创建作品、查看作品数据及收益', 
+		path: '/author' 
+	},
+  { 
+		title: '版权专区', 
+		desc: '优秀版权作品展示', 
+		path: '/copyright' 
+	}
 ]
 </script>
 

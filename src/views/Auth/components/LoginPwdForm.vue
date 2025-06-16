@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { useUserStore } from '@/stores/useUserStore'
 import { loginByPassword } from '@/apis/auth'
 import { useGoTo } from '@/composables/useGoTo'
@@ -69,10 +69,11 @@ const handleLogin = async () => {
 
 		userStore.setUser({
 			id: res.data.user.id,
-			username: res.data.user.nickname,
+			nickname: res.data.user.nickname,
 			avatar: res.data.user.avatar,
 			role: res.data.user.role,
-			token: res.data.token
+			token: res.data.token,
+			become_author_at: res.data.become_author_at
 		})
 
 		ElMessage.success('登录成功')

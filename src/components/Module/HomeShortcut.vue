@@ -1,7 +1,7 @@
 <template>
 	<div class="home-shortcut-wrapper">
 		<div class="shortcut-list">
-			<div class="shortcut-item" v-for="(item, index) in shortcuts" :key="index" @click="goTo(item.path)">
+			<div class="shortcut-item" v-for="(item, index) in props.shortcuts" :key="index" @click="goTo(item.path)">
 				<div class="left">
 					<div class="title">{{ item.title }}</div>
 					<div class="desc">{{ item.desc }}</div>
@@ -17,15 +17,17 @@
 <script setup lang="ts">
 	import { useGoTo } from '@/composables/useGoTo'
 
+	const props = defineProps<{
+	  shortcuts: {
+	    title: string
+	    desc: string
+	    path: string
+	  }[]
+	}>()
+
 	const arrowRight = new URL('@/assets/icons/arrow-right/icons8-arrow-50.png', import.meta.url).href
 
 	const { goTo } = useGoTo()
-
-	const shortcuts = [
-		{ title: '作家福利', desc: '番茄作家福利区', path: '/benefit' },
-		{ title: '作家专区', desc: '创建作品、查看作品数据及收益', path: '/author' },
-		{ title: '版权专区', desc: '优秀版权作品展示', path: '/copyright' }
-	]
 </script>
 
 <style scoped>

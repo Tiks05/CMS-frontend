@@ -4,7 +4,9 @@ import request from '@/utils/request'
 export const fetchTopBooks = () => request.get('/home/top-books')
 
 // 获取首页最新资讯
-export const fetchNewsList = () => request.get('/home/news-list')
+export const fetchNewsList = (params: { limit?: number } = {}) => {
+  return request.get('/home/news-list', { params })
+}
 
 // 获取首页作家列表
 export const getWriterList = () => request.get('/home/writer-list')

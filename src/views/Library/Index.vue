@@ -13,7 +13,7 @@
 		</div>
 
 		<!-- 底部 -->
-		<Food />
+		<Footer />
 	</div>
 </template>
 
@@ -21,7 +21,7 @@
 import { ref } from 'vue'
 
 import Header from '@/components/Layout/Header.vue'
-import Food from '@/components/Layout/Footer.vue'
+import Footer from '@/components/Layout/Footer.vue'
 import TypeList from './components/TypeList.vue'
 import BookList from './components/BookList.vue'
 

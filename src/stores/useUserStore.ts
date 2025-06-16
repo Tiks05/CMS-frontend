@@ -2,10 +2,11 @@ import { defineStore } from 'pinia'
 
 interface UserInfo {
   id: number
-  username: string
+  nickname: string
   role: 'user' | 'guest' | 'author' | 'admin'
   token?: string
   avatar?: string
+  become_author_at?: string | null
 }
 
 export const useUserStore = defineStore('user', {
@@ -17,10 +18,16 @@ export const useUserStore = defineStore('user', {
 
   getters: {
     isLogin: (state) => !!state.user,
-    username: (state) => state.user?.username || '',
+    nickname: (state) => state.user?.nickname || '',
     role: (state) => state.user?.role || 'guest',
     isAdmin: (state) => state.user?.role === 'admin',
-    isAuthor: (state) => state.user?.role === 'author'
+    isAuthor: (state) => state.user?.role === 'author',
+    daysAsAuthor: (state) => {
+      if (!state.user?.become_author_at) return 0
+      const begin = new Date(state.user.become_author_at).getTime()
+      const now = Date.now()
+      return Math.floor((now - begin) / (1000 * 60 * 60 * 24))
+    }
   },
 
   actions: {
