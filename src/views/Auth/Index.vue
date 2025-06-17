@@ -5,7 +5,7 @@
       <img :src="logo" class="nav-logo" />
       CMS
       <span class="divider">|</span>
-      <span class="nav-item-left" @click.stop="goTo('/author')">作家专区</span>
+      <span class="nav-item-left" @click.stop="goTo('/writer')">作家专区</span>
     </div>
     <div class="nav-right">
       <span class="nav-item-right" @click="goTo('/home')">游客登录</span>

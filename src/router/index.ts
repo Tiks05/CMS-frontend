@@ -3,12 +3,16 @@ import type { RouteRecordRaw } from 'vue-router'
 
 // 引入路由模块
 import authRoutes from './routes/auth'
-import homeRoutes from './routes/nav'
+import ModuleRoutes from './routes/module'
+import WriterRoutes from './routes/writer'
+import WorkspaceSubRoutes from './routes/workspace'
 
 // 汇总所有路由
 const routes: RouteRecordRaw[] = [
-  ...homeRoutes,   // home.ts 中的 `/` 重定向 和 `/home`
-  ...authRoutes   // `/login` 登录页面
+  ...ModuleRoutes,   // module.ts 中的 `/` 重定向 和 `/home`
+  ...authRoutes,   // `/login` 登录页面
+  ...WriterRoutes,
+  ...WorkspaceSubRoutes
 ]
 
 // 创建 router 实例

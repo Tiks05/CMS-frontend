@@ -30,7 +30,7 @@ const navMenus = [
 	{ path: '/home', label: '首页' },
 	{ path: '/library', label: '书库' },
 	{ path: '/bookshelf', label: '书架' },
-	{ path: '/author', label: '作家专区' },
+	{ path: '/writer', label: '作家专区' },
 	{ path: '/copyright', label: '版权专区' }
 ]
 

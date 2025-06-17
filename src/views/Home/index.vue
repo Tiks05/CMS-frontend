@@ -46,7 +46,7 @@ const navMenus = [
 	{ path: '/home', label: '首页' },
 	{ path: '/library', label: '书库' },
 	{ path: '/bookshelf', label: '书架' },
-	{ path: '/author', label: '作家专区' },
+	{ path: '/writer', label: '作家专区' },
 	{ path: '/copyright', label: '版权专区' }
 ]
 
@@ -59,7 +59,7 @@ const shortcutList = [
   { 
 		title: '作家专区', 
 		desc: '创建作品、查看作品数据及收益', 
-		path: '/author' 
+		path: '/writer' 
 	},
   { 
 		title: '版权专区', 

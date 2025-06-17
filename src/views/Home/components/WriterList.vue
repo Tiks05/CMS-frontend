@@ -2,7 +2,13 @@
   <div class="writer">
     <div class="title">
       <h2>殿堂、金番作家</h2>
-      <div class="more" v-if="userStore.role !== 'admin' && userStore.role !== 'author'" @click="goTo('/writer')">成为作家</div>
+      <div
+			  class="more"
+			  v-if="userStore.role !== 'admin' && userStore.role !== 'author'"
+			  @click="goTo(goToApplyPage)"
+			>
+			  成为作家
+			</div>
     </div>
 
     <div class="writer_swiper">
@@ -33,12 +39,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useGoTo } from '@/composables/useGoTo'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { useUserStore } from '@/stores/useUserStore'
 import { getWriterList } from '@/apis/home'
+
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -47,24 +54,26 @@ import 'swiper/css/autoplay'
 const { goTo } = useGoTo()
 const userStore = useUserStore()
 
+// swiper 状态
 const swiperInstance = ref<any>(null)
 const isBeginning = ref(true)
 const isEnd = ref(false)
 
 const writerlist = ref<any[]>([])
 
-onMounted(async () => {
-  const res = await getWriterList()
-  writerlist.value = res.data
-})
+// 是否跳转申请页
+const goToApplyPage = computed(() =>
+  !userStore.isLogin ? '/' : '/workspace/apply'
+)
 
+// swiper 相关方法
 const onSwiper = (swiper: any) => {
   swiperInstance.value = swiper
 }
 
 const onSlideChange = () => {
-  if (swiperInstance.value?.realIndex != null) {
-    const swiper = swiperInstance.value
+  const swiper = swiperInstance.value
+  if (swiper?.realIndex != null) {
     isBeginning.value = swiper.isBeginning
     isEnd.value = swiper.isEnd
     console.log('isBeginning:', isBeginning.value, 'isEnd:', isEnd.value)
@@ -72,16 +81,18 @@ const onSlideChange = () => {
 }
 
 const slidePrev = () => {
-  if (swiperInstance.value) {
-    swiperInstance.value.slidePrev()
-  }
+  swiperInstance.value?.slidePrev()
 }
 
 const slideNext = () => {
-  if (swiperInstance.value) {
-    swiperInstance.value.slideNext()
-  }
+  swiperInstance.value?.slideNext()
 }
+
+// 页面初始化
+onMounted(async () => {
+  const res = await getWriterList()
+  writerlist.value = res.data
+})
 </script>
 
 <style>

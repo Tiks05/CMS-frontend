@@ -21,7 +21,13 @@
 		    >立即登录</span>
 			
 		    <!-- 登录后显示“工作台” -->
-		    <span v-else class="btn1" @click="goTo('/authorwriter')">工作台</span>
+				<span
+				  v-if="userStore.isLogin"
+				  class="btn1"
+				  @click="goTo('/workspace')"
+				>
+				  工作台
+				</span>
 			
 		    <span @click="goTo('/benefit')">作家福利</span>
 		  </div>

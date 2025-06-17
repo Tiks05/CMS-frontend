@@ -26,8 +26,9 @@ export const useUserStore = defineStore('user', {
       if (!state.user?.become_author_at) return 0
       const begin = new Date(state.user.become_author_at).getTime()
       const now = Date.now()
-      return Math.floor((now - begin) / (1000 * 60 * 60 * 24))
-    }
+      return Math.ceil((now - begin) / (1000 * 60 * 60 * 24))
+    },
+    avatar: (state) => state.user?.avatar
   },
 
   actions: {
