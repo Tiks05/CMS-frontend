@@ -1,9 +1,9 @@
 <template>
 	<div class="bg_bai">
-		<Header :menus="navMenus" />
+		<Header v-if="navMenus" :menus="navMenus" />
 		<Banner />
 		<!-- 快捷入口 -->
-		<HomeShortcut :shortcuts="shortcutList" />
+		<HomeShortcut v-if="shortcutList" :shortcuts="shortcutList" />
 
 		<div class="index_wrapper">
 			<!-- 公告-活动 -->

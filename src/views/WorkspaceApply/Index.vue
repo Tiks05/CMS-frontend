@@ -6,32 +6,29 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/useUserStore'
 import { onMounted } from 'vue'
 
 const router = useRouter()
-const userStore = useUserStore()
 
 onMounted(() => {
-  const role = userStore.role || 'guest'
-
-  if (role === 'author') {
-    router.replace('/workspace/writer')
-  } else {
-    router.replace('/workspace/apply')
-  }
+  router.replace('/workspace/apply')
 })
 </script>
 
 <style scoped>
 .workspace-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 100px;
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;           /* 比页面其它内容高 */
 }
 .workspace-loading img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: 80px;
   height: 80px;
+  transform: translate(-50%, -50%);
 }
 </style>

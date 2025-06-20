@@ -86,7 +86,6 @@
 	
 	.recently_list{margin-top: 42px;}
 	.recently_list table{width: 100%;}
-	.recently_list table tr{}
 	.recently_list table th{height: 68px;border-bottom: 1px solid #e4e4e4;
 		text-align: left;font-size: 16px;color: #999;
 	}

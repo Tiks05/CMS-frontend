@@ -22,6 +22,12 @@ const ModuleRoutes: RouteRecordRaw[] = [
     name: 'Writer',
     component: () => import('@/views/Writer/Index.vue'),
     meta: { title: '作家首页', requiresAuth: false }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('@/components/Layout/Profile.vue'),
+    meta: { title: '个人信息', requiresAuth: true }
   }
 ]
 

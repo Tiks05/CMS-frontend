@@ -1,7 +1,7 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #fa1f1f, // ✅ 主色：番茄红
+      'base': #ff5f00, // ✅ 主色：番茄橙，统一勾选框颜色等主题控件
     ),
     'success': (
       'base': #24cc43, // ✅ 成功：亮绿

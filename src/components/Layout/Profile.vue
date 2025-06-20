@@ -1,20 +1,20 @@
 <template>
-  <Header :menus="navMenus" />
+  <Header v-if="navMenus" :menus="navMenus" />
 
   <div class="authorwriter">
     <div class="author">
       <div class="mass">
-        <img src="/src/assets/images/workspace/apply/bg-1.png" alt="提示图" />
+        <img src="/src/assets/images/layout/profile/bg-1.png" alt="提示图" />
         <div class="text">
-          <h5>欢迎成为CMS作家，快来填写信息～</h5>
-          <p>1. 作者信息会同步更新到CMS小说APP；2. 优质的头像、笔名和简介，能够让读者更快记住你</p>
+          <h5>完善你的个人资料，让更多人了解你</h5>
+          <p>1. 昵称、头像和简介将展示在你的个人主页；2. 好的个人资料能让你脱颖而出，吸引更多关注</p>
         </div>
       </div>
 
       <div class="fill_in">
         <!-- 作家头像 -->
         <div class="item">
-          <div class="span"><b>*</b>作家头像</div>
+          <div class="span"><b>*</b>修改头像</div>
           <div class="up_pic">
             <img :src="previewAvatar || userStore.avatar" alt="用户头像" />
             <div class="btn">
@@ -26,7 +26,7 @@
 
         <!-- 笔名 -->
         <div class="item">
-          <div class="span"><b>*</b>笔名</div>
+          <div class="span"><b>*</b>昵称</div>
           <div class="input">
             <input maxlength="10" type="text" placeholder="请勿使用特殊符号或有明显营销推广意图的名称" v-model="name" />
             <div class="num">{{ name.length }} / 10</div>
@@ -35,9 +35,9 @@
 
         <!-- 简介 -->
         <div class="item">
-          <div class="span"><b>*</b>作家简介</div>
+          <div class="span"><b>*</b>个人简介</div>
           <div class="input">
-            <input maxlength="30" type="text" placeholder="10-30字，展示个人特色，写作经验，创作方向等" v-model="introduction" />
+            <input maxlength="30" type="text" placeholder="10-30字，写点有趣的介绍，让大家更了解你～" v-model="introduction" />
             <div class="num">{{ introduction.length }} / 30</div>
           </div>
         </div>
@@ -64,7 +64,7 @@
             }"
             @click="canSubmit ? submitApply() : null"
           >
-            成为作家
+            确认修改
           </el-button>
         </div>
       </div>
@@ -77,14 +77,14 @@ import Header from '@/components/Layout/Header.vue'
 import { ref, computed } from 'vue'
 import { useUserStore } from '@/stores/useUserStore'
 import { ElMessage } from 'element-plus'
-import { applyAsAuthor } from '@/apis/workspace'
+import { applyAsAuthor } from '@/apis/layout'
 import { useGoTo } from '@/composables/useGoTo'
 
 const { goTo } = useGoTo()
 const userStore = useUserStore()
 
 const name = ref(userStore.nickname || '')
-const introduction = ref('')
+const introduction = ref(userStore.signature || '')
 const apply = ref(false)
 const hasInteracted = ref(false)
 
@@ -137,23 +137,18 @@ const submitApply = async () => {
       ...userStore.user!,
       avatar: res.data.avatar || userStore.user?.avatar,
       nickname: res.data.nickname || name.value.trim(),
-      role: 'author',
-      become_author_at: res.data.become_author_at || new Date().toISOString()
+      signature: res.data.signature || introduction.value.trim()
     })
 
-    ElMessage.success('申请成功，欢迎成为作家！')
+    ElMessage.success('修改个人信息成功！')
     goTo('/home')
   } catch (err: any) {
     console.error('申请失败:', err)
-    ElMessage.error('申请失败，请稍后重试')
+    ElMessage.error('修改失败，请稍后重试')
   }
 }
 
-const navMenus = [
-  { path: '/home', label: 'CMS' },
-  { path: '/classroom', label: '作家课堂' },
-  { path: '/benefit', label: '作家福利' }
-]
+const navMenus:any = []
 </script>
 
 <style scoped>
@@ -325,7 +320,7 @@ const navMenus = [
 
 .apply .icon.on {
   border-color: #ff5f00;
-  background-image: url(/src/assets/images/workspace/apply/masked.png);
+  background-image: url(/src/assets/images/layout/profile/masked.png);
   background-size: 100% 100%;
 }
 

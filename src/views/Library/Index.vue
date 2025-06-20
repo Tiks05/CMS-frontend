@@ -2,14 +2,14 @@
 	<div class="bg_bai">
 		<!-- 头部 -->
 		<div class="header_con">
-			<Header :menus="navMenus" />
+			<Header v-if="navMenus" :menus="navMenus" />
 		</div>
 		<div class="library_wrapper">
 			<!-- 类别选择 -->
 			<TypeList @update:filters="handleFilters" />
 
 			<!-- 列表：接收筛选条件 -->
-			<BookList :filters="filters" />
+			<BookList v-if="filters" :filters="filters" />
 		</div>
 
 		<!-- 底部 -->

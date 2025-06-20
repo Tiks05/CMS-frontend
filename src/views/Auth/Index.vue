@@ -46,11 +46,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useGoTo } from '@/composables/useGoTo'
 
 const { goTo } = useGoTo()
-const router = useRouter()
 const videoLoaded = ref(false)
 
 const poster = new URL('@/assets/images/auth/welcome.png', import.meta.url).href

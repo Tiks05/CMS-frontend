@@ -22,7 +22,7 @@
         @swiper="onSwiper"
         @slideChange="onSlideChange"
       >
-        <swiper-slide class="slide" v-for="(item, i) in writerlist" :key="i">
+        <swiper-slide class="slide" v-for="(item, i) in writerlist" :key="i" @click="goTo(item.path)">
           <div class="avatar"><img :src="item.pic"></div>
           <div class="bottom">
             <div class="name">{{ item.title }}</div>
@@ -206,7 +206,6 @@ onMounted(async () => {
 		mask: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU1IiBoZWlnaHQ9IjEyNiIgdmlld0JveD0iMCAwIDE1NSAxMjYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMTIuMjA3IDExMy41ODFDMTI3LjEyOSAxMDguNjYxIDE0MS40NDkgMTAyLjM2MyAxNTUgOTQuODE3OVYwLjAxMDI1MzlIMFYxMjMuNTI0QzM3LjM3NSAxMjguODU2IDc1Ljc4NTIgMTI1LjU5MSAxMTIuMjA3IDExMy41ODFaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K);
 		border-top-left-radius: 12px;
 		border-top-right-radius: 12px;
-		cursor: pointer;
 	}
 
 	.writer_swiper {
@@ -226,6 +225,7 @@ onMounted(async () => {
 		overflow: hidden;
 		transition: transform 0.3s;
 		box-shadow: 0 0px 20px rgba(0, 0, 0, .1);
+		cursor: pointer;
 	}
 
 	.writer_swiper .slide:hover {

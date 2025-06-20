@@ -1,3 +1,4 @@
+import { id } from 'element-plus/es/locales.mjs'
 import { defineStore } from 'pinia'
 
 interface UserInfo {
@@ -7,6 +8,8 @@ interface UserInfo {
   token?: string
   avatar?: string
   become_author_at?: string | null
+  signature?: string | null
+  level?: number
 }
 
 export const useUserStore = defineStore('user', {
@@ -17,6 +20,7 @@ export const useUserStore = defineStore('user', {
   }),
 
   getters: {
+    id: (state) => state.user?.id || 0,
     isLogin: (state) => !!state.user,
     nickname: (state) => state.user?.nickname || '',
     role: (state) => state.user?.role || 'guest',
@@ -28,7 +32,9 @@ export const useUserStore = defineStore('user', {
       const now = Date.now()
       return Math.ceil((now - begin) / (1000 * 60 * 60 * 24))
     },
-    avatar: (state) => state.user?.avatar
+    avatar: (state) => state.user?.avatar,
+    signature: (state) => state.user?.signature || '',
+    level: (state) => state.user?.level || 0
   },
 
   actions: {

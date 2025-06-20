@@ -4,8 +4,8 @@ const WriterRoutes: RouteRecordRaw[] = [
   {
     path: '/workspace',
     name: 'Workspace',
-    component: () => import('@/views/Workspace/Index.vue'),
-    meta: { title: '工作台', requiresAuth: true }
+    component: () => import('@/views/WorkspaceApply/Index.vue'),
+    meta: { title: '申请作家', requiresAuth: true }
   }
 ]
 

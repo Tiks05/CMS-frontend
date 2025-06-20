@@ -73,7 +73,9 @@ const handleLogin = async () => {
 			avatar: res.data.user.avatar,
 			role: res.data.user.role,
 			token: res.data.token,
-			become_author_at: res.data.user.become_author_at
+			become_author_at: res.data.user.become_author_at,
+			signature: res.data.user.signature,
+			level: res.data.user.level,
 		})
 
 		ElMessage.success('登录成功')
@@ -163,14 +165,6 @@ const rules: FormRules = {
 }
 
 /* 协议部分 */
-.agree-line {
-	display: flex;
-	align-items: flex-start;
-	font-size: 12px;
-	color: #999;
-	margin-top: 20px;
-}
-
 .agree-line {
 	display: flex;
 	align-items: flex-start;
