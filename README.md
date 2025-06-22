@@ -63,25 +63,25 @@ CMS-frontend/
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Run the development server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### 3. Build for production
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### 4. Preview production build locally
 
 ```bash
-npm run preview
+pnpm run preview
 ```
 
 ---
