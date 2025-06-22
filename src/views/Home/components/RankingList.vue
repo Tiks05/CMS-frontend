@@ -111,7 +111,6 @@ onMounted(async () => {
 })
 </script>
 
-
 <style>
 	.ranking_wrapper {
 		width: 840px;

@@ -36,6 +36,7 @@
 
           <span class="byte-btn" @click="startReading">开始阅读</span>
           <span class="byte-btn byte-btn2" @click="addBookshelf">加入书架</span>
+          <span class="byte-btn" @click="handleComment">评论</span>
         </div>
 
         <div class="author" v-if="bookHeader.author" @click="goTo(authorPath)">
@@ -108,6 +109,12 @@ function startReading() {
 
 function addBookshelf() {
   alert('加入书架功能待实现')
+}
+
+const handleComment = () => {
+	if (!props.bookHeader?.book.id) return
+	console.log("bookId:", props.bookHeader.book.id)
+	goTo(`/comments/${props.bookHeader.book.id}`)
 }
 </script>
 

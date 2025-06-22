@@ -127,7 +127,7 @@
 							<div class="explain-title">签约说明</div>
 							<ul class="explain-items">
 								<li>作品字数达到2万字或被编辑提签后，将获得申请签约资格；详见<em>《签约问题全解》</em></li>
-								<li>签约作品可被用户在番茄小说等平台查看，在一定字数后获得全平台推荐，并享有广告分成、全勤奖等各种收益，详见<em>《番茄小说网作家福利》</em></li>
+								<li>签约作品可被用户在CMS等平台查看，在一定字数后获得全平台推荐，并享有广告分成、全勤奖等各种收益，详见<em>《CMS作家福利》</em></li>
 							</ul>
 						</div>
 						<div class="sign-manage-divider"></div>

@@ -8,6 +8,7 @@ import WriterRoutes from './routes/writer'
 import BookInfoRoutes from './routes/bookinfo'
 import WriterInfoRoutes from './routes/writerinfo'
 import WorkspaceRoutes from './routes/workspace'
+import CommentRoutes from './routes/comment'
 
 // 汇总所有路由
 const routes: RouteRecordRaw[] = [
@@ -16,7 +17,8 @@ const routes: RouteRecordRaw[] = [
   ...WriterRoutes,
   ...BookInfoRoutes,
   ...WriterInfoRoutes,
-  ...WorkspaceRoutes
+  ...WorkspaceRoutes,
+  ...CommentRoutes
 ]
 
 // 创建 router 实例
