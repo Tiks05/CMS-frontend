@@ -8,7 +8,7 @@ const WorkspaceRoutes: RouteRecordRaw[] = [
     meta: { title: '申请作家', requiresAuth: true }
   },
   {
-    path: '/workspace/writer/create-chapter/:bookId',
+    path: '/workspace/writer/create-chapter/:bookId/:volumeId?',
     name: 'CreateBookChapter',
     component: () => import('@/views/WorkspaceWriter/components/CreateChapter.vue'),
     meta: { title: '创建章节', requiresAuth: true }

@@ -29,21 +29,33 @@
 </template>
 
 <script setup lang="ts">
-	import { useGoTo } from '@/composables/useGoTo'
-	const list = [
-		{type:'年代', title: '姜老太重生支棱了！踹渣夫打逆子', path: "/bookinfo" ,chapter:'第42章 天生当兵的料子',author:'赤小焱',time:'06-07 17:15'},
-		{type:'玄幻言情', title: '被黑月光师姐偷走天魂后', path: "/bookinfo" ,chapter:'第15章 初啼之卵与万眸盛宴',author:'喃风吟',time:'06-07 17:15'},
-		{type:'男频衍生', title: '四合院不养闲人', path: "/bookinfo" ,chapter:'第9章 利益同盟',author:'一个个的红豆子',time:'06-07 17:15'},
-		{type:'玄幻脑洞', title: '我在娘胎能斩神，出生为何变废物', path: "/bookinfo" ,chapter:'第34章 菩提神树 惊天造化',author:'灵台县男神',time:'06-07 17:15'},
-		{type:'历史脑洞', title: '开局随机召唤，我在古代争霸天下', path: "/bookinfo" ,chapter:'第43章 神谕归途遇惊变，狼庭深处暗流涌',author:'谚歌辉屿',time:'06-07 17:15'},
-		{type:'都市日常', title: '打工路上的情爱往事', path: "/bookinfo" ,chapter:'425 夫妻对战	笔端有风月',author:'谚歌辉屿',time:'06-07 17:15'},
-		{type:'男频衍生', title: '雪线牧歌', path: "/bookinfo" ,chapter:'第61章 内部排查保安全',author:'琉球的凯瑟琳',time:'06-07 17:15'},
-		{type:'女频衍生', title: '被雷劈后，我拯救了李莲花', path: "/bookinfo" ,chapter:'第129章 李莲花反穿修仙界',author:'周停',time:'06-07 17:15'},
-		{type:'动漫衍生', title: '咸阳宫阙三万里', path: "/bookinfo" ,chapter:'120章 机关城小住',author:'墨香犹在',time:'06-07 17:15'},
-		{type:'历史脑洞', title: '我在三国当厨神', path: "/bookinfo" ,chapter:'第十四章 担担面破符与龙爪云',author:'七洲陶哥',time:'06-07 17:15'},
-		{type:'悬疑脑洞', title: '诡域猎杀，当恐惧降临之时', path: "/bookinfo" ,chapter:'第26章 海雾中的低语',author:'歆歆大人',time:'06-07 17:15'}
-	]
-	const { goTo } = useGoTo()
+import { onMounted, ref } from 'vue'
+import { useGoTo } from '@/composables/useGoTo'
+import { getRecentUpdates } from '@/apis/home'
+
+interface UpdateItem {
+  type: string
+  title: string
+  chapter: string
+  author: string
+  time: string
+  path: string
+}
+
+const list = ref<UpdateItem[]>([])
+
+const { goTo } = useGoTo()
+
+const fetchRecentUpdates = async () => {
+  try {
+    const res = await getRecentUpdates()
+    list.value = res.data
+  } catch (err) {
+    console.error('获取最近更新失败', err)
+  }
+}
+
+onMounted(fetchRecentUpdates)
 </script>
 
 <style scoped>

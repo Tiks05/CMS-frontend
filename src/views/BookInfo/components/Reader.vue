@@ -53,15 +53,18 @@ const fetchContent = async () => {
 
   try {
     const res = await getChapterContent(bookId, volumeId, chapterId)
-    bookTitle.value = res.data.book_title
-    chapterTitle.value = res.data.chapter_title
-    wordCount.value = res.data.word_count
-    updatedAt.value = res.data.updated_at
-    content.value = res.data.content.split('\n')
-    chapterIndex.value = res.data.chapter_index || 1
-    prevChapterId.value = res.data.prev_chapter_id
-    nextChapterId.value = res.data.next_chapter_id
-    console.log('章节内容获取成功', res.data)
+    const data = res.data
+
+    bookTitle.value = data.book_title
+    chapterTitle.value = data.chapter_title
+    wordCount.value = data.word_count
+    updatedAt.value = data.updated_at
+    content.value = data.content.split('\n')
+    chapterIndex.value = data.chapter_index || 1
+    prevChapterId.value = data.prev_chapter_id || null
+    nextChapterId.value = data.next_chapter_id || null
+
+    console.log('章节内容获取成功', data)
   } catch (err) {
     console.error('获取章节内容失败', err)
   }
@@ -83,8 +86,10 @@ const goToNext = () => {
   }
 }
 
+// 初次加载
 onMounted(fetchContent)
 
+// 监听章节变化重新拉取内容
 watch(
   () => route.params.chapterId,
   () => {

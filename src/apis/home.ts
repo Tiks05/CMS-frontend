@@ -25,3 +25,7 @@ export const fetchRankingList = (reader_type: string, plot_type: string) =>
   request.get('/home/ranking', {
     params: { reader_type, plot_type }
   })
+
+export const getRecentUpdates = () => {
+  return request.get('/home/recent-updates')
+}

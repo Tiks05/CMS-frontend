@@ -9,7 +9,7 @@
 					</svg>
 				</div>
 				<div class="text">
-					<p>第{{ volumeIndex }}卷：{{ volumeTitle }}</p>
+					<p>第{{ volumeIndexCN }}卷：{{ volumeTitle }}</p>
 					<span>章节编号：第{{ chapterNumber }}章</span>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useGoTo } from '@/composables/useGoTo'
 import { getChapterDetailById, updateChapter } from '@/apis/workspace'
@@ -116,6 +116,23 @@ const handleUpdate = async () => {
 		ElMessage.error('章节更新失败')
 	}
 }
+
+// 汉字数字转换函数
+const toChineseNumber = (num: number): string => {
+	const chars = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+	if (num <= 10) return chars[num]
+	if (num < 20) return '十' + chars[num % 10]
+	if (num < 100) {
+		const tens = Math.floor(num / 10)
+		const units = num % 10
+		return chars[tens] + '十' + (units === 0 ? '' : chars[units])
+	}
+	return num.toString()
+}
+
+// 中文卷序号
+const volumeIndexCN = computed(() => toChineseNumber(volumeIndex.value))
+
 </script>
 
 <style scoped>
