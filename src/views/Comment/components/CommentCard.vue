@@ -1,10 +1,7 @@
 <template>
   <div
     class="comment-card"
-    :class="[
-      { 'is-sub': level > 1 && !comment.is_flat },
-      `level-${level}`
-    ]"
+    :class="[{ 'is-sub': level > 1 && !comment.is_flat }, `level-${level}`]"
   >
     <img class="avatar" :src="comment.user.avatar" alt="avatar" />
     <div class="content-box">

@@ -1,20 +1,20 @@
 <template>
-	<div class="index_banner">
-		<swiper
-			:modules="[Pagination, EffectFade, Autoplay]"
-			:pagination="{ clickable: true }"
-			@swiper="onSwiper"
-			:effect="'fade'"
-			:loop="true"
-			:autoplay="{ delay: 3000 }"
-		>
-			<swiper-slide v-for="(item, index) in bannerList" :key="index">
-				<div class="slide-content" @click="goTo(item.path)">
-					<img :src="item.banner_url" alt="" />
-				</div>
-			</swiper-slide>
-		</swiper>
-	</div>
+  <div class="index_banner">
+    <swiper
+      :modules="[Pagination, EffectFade, Autoplay]"
+      :pagination="{ clickable: true }"
+      @swiper="onSwiper"
+      :effect="'fade'"
+      :loop="true"
+      :autoplay="{ delay: 3000 }"
+    >
+      <swiper-slide v-for="(item, index) in bannerList" :key="index">
+        <div class="slide-content" @click="goTo(item.path)">
+          <img :src="item.banner_url" alt="" />
+        </div>
+      </swiper-slide>
+    </swiper>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -32,48 +32,48 @@ const bannerList = ref<{ banner_url: string; path: string }[]>([])
 const router = useRouter()
 
 const fetchBannerList = async () => {
-	const res = await getBannerList({ limit: 5 })
-	bannerList.value = res.data || []
+  const res = await getBannerList({ limit: 5 })
+  bannerList.value = res.data || []
 }
 
 const onSwiper = (swiper: any) => {
-	setTimeout(() => swiper.update(), 100)
+  setTimeout(() => swiper.update(), 100)
 }
 
 const goTo = (path: string) => {
-	router.push(path)
+  router.push(path)
 }
 
 onMounted(() => {
-	fetchBannerList()
+  fetchBannerList()
 })
 </script>
 
 <style>
 .index_banner {
-	width: 100%;
+  width: 100%;
 }
 
 .index_banner img {
-	width: 100%;
-	vertical-align: middle;
-	cursor: pointer;
+  width: 100%;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 .index_banner .swiper-pagination {
-	bottom: 18px;
+  bottom: 18px;
 }
 
 .index_banner .swiper-pagination-bullet {
-	width: 24px;
-	cursor: pointer;
-	height: 2px;
-	opacity: 1;
-	background-color: rgba(255, 255, 255, 1);
-	border-radius: 0;
+  width: 24px;
+  cursor: pointer;
+  height: 2px;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0;
 }
 
 .index_banner .swiper-pagination-bullet.swiper-pagination-bullet-active {
-	background-color: #fa6725;
+  background-color: #fa6725;
 }
 </style>

@@ -14,10 +14,10 @@ const WorkspaceRoutes: RouteRecordRaw[] = [
     meta: { title: '创建章节', requiresAuth: true }
   },
   {
-  path: '/workspace/writer/edit-chapter/:bookId/:chapterId',
-  name: 'UpdateChapter',
-  component: () => import('@/views/WorkspaceWriter/components/UpdateChapter.vue'),
-  meta: { title: '编辑章节' }
+    path: '/workspace/writer/edit-chapter/:bookId/:chapterId',
+    name: 'UpdateChapter',
+    component: () => import('@/views/WorkspaceWriter/components/UpdateChapter.vue'),
+    meta: { title: '编辑章节' }
   },
   {
     path: '/workspace/writer',

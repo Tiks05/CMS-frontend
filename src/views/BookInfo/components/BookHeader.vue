@@ -16,12 +16,10 @@
             <h1>{{ bookHeader.book.title }}</h1>
           </div>
           <div class="info-label" v-if="bookHeader.book.status || bookHeader.book.tags">
-            <span v-if="bookHeader.book.status" class="info-label-yellow">{{ bookHeader.book.status }}</span>
-            <span
-              v-for="(tag, index) in tags"
-              :key="index"
-              class="info-label-grey"
-            >{{ tag }}</span>
+            <span v-if="bookHeader.book.status" class="info-label-yellow">{{
+              bookHeader.book.status
+            }}</span>
+            <span v-for="(tag, index) in tags" :key="index" class="info-label-grey">{{ tag }}</span>
           </div>
           <div class="info-count" v-if="bookHeader.book.word_count != null">
             <div class="info-count-word">
@@ -29,8 +27,11 @@
               <span class="text">万字</span>
             </div>
           </div>
-          <div class="info-last" v-if="maxChapter != null || bookHeader.book.updated_at">
-            <span class="info-last-title">最近更新：第{{ maxChapter }}章</span>
+          <div class="info-last" v-if="latestChapter != null || bookHeader.book.updated_at">
+            <span class="info-last-title">
+              最近更新： 第{{ latestChapter }}章
+              <template v-if="latestChapterTitle"> {{ latestChapterTitle }}</template>
+            </span>
             <span class="info-last-time">{{ bookHeader.book.updated_at }}</span>
           </div>
 
@@ -52,7 +53,9 @@
               <span class="author-name-logo"></span>
               <span class="author-name-text">{{ bookHeader.author.nickname }}</span>
             </div>
-            <div class="author-desc" v-if="bookHeader.author.signature">{{ bookHeader.author.signature }}</div>
+            <div class="author-desc" v-if="bookHeader.author.signature">
+              {{ bookHeader.author.signature }}
+            </div>
           </div>
         </div>
       </div>
@@ -81,7 +84,8 @@ interface Book {
   word_count?: number
   tags?: string
   updated_at?: string
-	max_chapter: number
+  latest_chapter: number
+  latest_chapter_title: string
 }
 
 interface BookHeaderData {
@@ -98,8 +102,12 @@ const tags = computed(() => {
 
 const authorPath = computed(() => props.bookHeader?.author.path || '/authorinfo')
 
-const maxChapter = computed(() => {
-  return (props.bookHeader?.book as any).max_chapter || ''
+const latestChapter = computed(() => {
+  return (props.bookHeader?.book as Book).latest_chapter || ''
+})
+
+const latestChapterTitle = computed(() => {
+  return (props.bookHeader?.book as Book).latest_chapter_title || ''
 })
 
 function startReading() {
@@ -112,349 +120,351 @@ function addBookshelf() {
 }
 
 const handleComment = () => {
-	if (!props.bookHeader?.book.id) return
-	console.log("bookId:", props.bookHeader.book.id)
-	goTo(`/comments/${props.bookHeader.book.id}`)
+  if (!props.bookHeader?.book.id) return
+  console.log('bookId:', props.bookHeader.book.id)
+  goTo(`/comments/${props.bookHeader.book.id}`)
 }
 </script>
 
 <style scoped>
 .bookindex_name {
-	margin-top: 64px;
-	background-color: #fff;
-	padding: 30px 0;
+  margin-top: 64px;
+  background-color: #fff;
+  padding: 30px 0;
 }
 
 .bookindex_wp {
-	width: 1240px;
-	margin: 0 auto;
+  width: 1240px;
+  margin: 0 auto;
 }
 
 .bookindex_name .now_nav span {
-	font-size: 14px;
-	cursor: pointer;
-	line-height: 20px;
-	color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 20px;
+  color: #333;
 }
 
 .bookindex_name .now_nav span:hover {
-	color: #fa6725;
+  color: #fa6725;
 }
 
 .bookindex_name .now_nav em {
-	font-style: normal;
-	font-size: 14px;
-	color: rgba(0, 0, 0, .4);
-	cursor: pointer;
+  font-style: normal;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
 }
 
 .bookindex_name .now_nav em:hover {
-	color: #fa6725;
+  color: #fa6725;
 }
 
 .bookindex_name .now_nav b {
-	font-weight: normal;
-	font-size: 14px;
-	color: rgba(0, 0, 0, .4);
-	margin: 0 5px;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+  margin: 0 5px;
 }
 
 .page-header {
-	padding: 30px 20px 45px;
-	width: 1240px;
-	margin: 0 auto
+  padding: 30px 20px 45px;
+  width: 1240px;
+  margin: 0 auto;
 }
 
 .page-header-info {
-	margin-top: 32px;
-	overflow: hidden
+  margin-top: 32px;
+  overflow: hidden;
 }
 
 .page-header-info .img {
-	float: left;
-	height: 234px;
-	width: 180px;
-	border-radius: 8px
+  float: left;
+  height: 234px;
+  width: 180px;
+  border-radius: 8px;
 }
 
 .page-header-info .img img {
-	height: 234px;
-	width: 180px;
-	border-radius: 8px
+  height: 234px;
+  width: 180px;
+  border-radius: 8px;
 }
 
 .page-header-info .info {
-	float: left;
-	margin-left: 24px;
-	max-width: 585px;
-	min-width: 400px;
-	height: 234px;
-	overflow: hidden;
-	position: relative
+  float: left;
+  margin-left: 24px;
+  max-width: 585px;
+  min-width: 400px;
+  height: 234px;
+  overflow: hidden;
+  position: relative;
 }
 
 .page-header-info .info-name {
-	margin-top: 10px;
-	height: 32px;
-	line-height: 32px;
-	font-size: 24px;
-	font-weight: 500
+  margin-top: 10px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .page-header-info .info-name h1 {
-	font-size: 24px;
-	font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .page-header-info .info-label {
-	margin-top: 12px;
-	height: 22px
+  margin-top: 12px;
+  height: 22px;
 }
 
 .page-header-info .info-label-grey,
 .page-header-info .info-label-yellow {
-	padding: 0 7px;
-	height: 22px;
-	line-height: 22px;
-	border-radius: 4px
+  padding: 0 7px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 4px;
 }
 
 .page-header-info .info-label-yellow {
-	color: #fdae31;
-	border: 1px solid #fdae31
+  color: #fdae31;
+  border: 1px solid #fdae31;
 }
 
 .page-header-info .info-label-grey {
-	margin-left: 10px;
-	color: #000;
-	border: 1px solid #000;
-	opacity: .3
+  margin-left: 10px;
+  color: #000;
+  border: 1px solid #000;
+  opacity: 0.3;
 }
 
 .page-header-info .info-count {
-	margin-top: 18px;
-	height: 28px;
-	overflow: hidden;
-	display: flex
+  margin-top: 18px;
+  height: 28px;
+  overflow: hidden;
+  display: flex;
 }
 
 .page-header-info .info-count-read,
 .page-header-info .info-count-word {
-	display: flex;
-	align-items: flex-end
+  display: flex;
+  align-items: flex-end;
 }
 
 .page-header-info .info-count-read .detail,
 .page-header-info .info-count-word .detail {
-	font-size: 24px;
-	line-height: 28px;
-	margin-right: 8px
+  font-size: 24px;
+  line-height: 28px;
+  margin-right: 8px;
 }
 
 .page-header-info .info-count-read .text,
 .page-header-info .info-count-word .text {
-	opacity: .4;
-	color: #000;
-	font-size: 12px;
-	position: relative;
-	top: -1px
+  opacity: 0.4;
+  color: #000;
+  font-size: 12px;
+  position: relative;
+  top: -1px;
 }
 
 .page-header-info .info-count-read {
-	margin-left: 32px;
-	position: relative
+  margin-left: 32px;
+  position: relative;
 }
 
 .page-header-info .info-count-read:before {
-	position: absolute;
-	left: -16px;
-	top: 50%;
-	margin-top: -8px;
-	content: " ";
-	width: 1px;
-	height: 16px;
-	background-color: #d8d8d8
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  margin-top: -8px;
+  content: ' ';
+  width: 1px;
+  height: 16px;
+  background-color: #d8d8d8;
 }
 
 .page-header-info .info-last {
-	font-size: 14px;
-	color: #666;
-	line-height: 24px;
-	margin-top: 35px;
-	color: #000;
-	display: flex
+  font-size: 14px;
+  color: #666;
+  line-height: 24px;
+  margin-top: 35px;
+  color: #000;
+  display: flex;
 }
 
 .page-header-info .info-last-time {
-	margin-left: 15px;
-	flex: 0 0 auto
+  margin-left: 15px;
+  flex: 0 0 auto;
 }
 
 .page-header-info .info-last a {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .page-header-info .info-last a,
 .page-header-info .info-last a:hover {
-	color: #000
+  color: #000;
 }
 
 .page-header-info .byte-btn {
-	margin-top: 8px;
-	width: 150px;
-	height: 32px;
-	line-height: 32px;
-	border-radius: 4px;
-	font-size: 14px;
-	color: #fff;
-	text-align: center;
-	display: inline-block;
-	cursor: pointer;
-	font-weight: 500;
-	background-image: linear-gradient(117deg, #ff9000 12%, #ff4f00 87%);
-	border-radius: 50px;
+  margin-top: 8px;
+  width: 150px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 500;
+  background-image: linear-gradient(117deg, #ff9000 12%, #ff4f00 87%);
+  border-radius: 50px;
 }
-.page-header-info .byte-btn2{color: #333;margin-left: 10px;
-	background: rgba(0, 0, 0, .04) !important;
+.page-header-info .byte-btn2 {
+  color: #333;
+  margin-left: 10px;
+  background: rgba(0, 0, 0, 0.04) !important;
 }
 .page-header-info .byte-btn:hover {
-	background: #fa6725;
+  background: #fa6725;
 }
 
-.page-header-info .info-btn>a {
-	color: #fff;
-	height: 40px;
-	line-height: 32px;
-	display: inline-block;
-	width: 100%
+.page-header-info .info-btn > a {
+  color: #fff;
+  height: 40px;
+  line-height: 32px;
+  display: inline-block;
+  width: 100%;
 }
 
 .page-header-info .info-btn:hover {
-	cursor: pointer
+  cursor: pointer;
 }
 
 .page-header-info .info-btn_disabled {
-	background-color: #f5f6f7;
-	color: #c2c6cc
+  background-color: #f5f6f7;
+  color: #c2c6cc;
 }
 
 .page-header-info .info .add-bookshelf-btn {
-	position: absolute;
-	bottom: 0;
-	left: 160px;
-	color: rgba(0, 0, 0, .8) !important;
-	background-color: rgba(0, 0, 0, .04) !important;
-	background-image: none;
-	min-width: 150px;
-	width: auto !important
+  position: absolute;
+  bottom: 0;
+  left: 160px;
+  color: rgba(0, 0, 0, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  background-image: none;
+  min-width: 150px;
+  width: auto !important;
 }
 
 .page-header-info .info .add-bookshelf-btn:hover {
-	background-color: rgba(0, 0, 0, .04) !important;
-	background-image: none !important
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  background-image: none !important;
 }
 
 .page-header-info .info .download-btn {
-	position: absolute;
-	bottom: 0;
-	left: 160px;
-	color: rgba(0, 0, 0, .8) !important;
-	background-color: rgba(0, 0, 0, .04) !important;
-	background-image: none;
-	min-width: 150px;
-	width: auto !important
+  position: absolute;
+  bottom: 0;
+  left: 160px;
+  color: rgba(0, 0, 0, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  background-image: none;
+  min-width: 150px;
+  width: auto !important;
 }
 
 .page-header-info .info .download-btn:hover {
-	color: rgba(0, 0, 0, .8) !important;
-	background: rgba(0, 0, 0, .04) !important
+  color: rgba(0, 0, 0, 0.8) !important;
+  background: rgba(0, 0, 0, 0.04) !important;
 }
 
 .page-header-info .info .download-icon {
-	position: absolute;
-	bottom: 0;
-	left: 322px;
-	background-color: rgba(0, 0, 0, .04) !important;
-	border-radius: 50%;
-	width: 32px;
-	height: 32px;
-	color: rgba(0, 0, 0, .8);
-	line-height: 32px;
-	text-align: center
+  position: absolute;
+  bottom: 0;
+  left: 322px;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 32px;
+  text-align: center;
 }
 
 .page-header-info .info .download-icon:hover {
-	color: #ff5f00
+  color: #ff5f00;
 }
 
 .page-header-info .author {
-	width: 364px;
-	float: right;
-	text-align: center;
-	margin-top: 10px;
-	position: relative;
-	font-size: 0
+  width: 364px;
+  float: right;
+  text-align: center;
+  margin-top: 10px;
+  position: relative;
+  font-size: 0;
 }
 
 .page-header-info .author-divider {
-	position: absolute;
-	top: 6;
-	left: 0;
-	height: 210px;
-	opacity: .1;
-	background-color: #000;
-	width: 1px
+  position: absolute;
+  top: 6;
+  left: 0;
+  height: 210px;
+  opacity: 0.1;
+  background-color: #000;
+  width: 1px;
 }
 
 .page-header-info .author-info {
-	cursor: pointer
+  cursor: pointer;
 }
 
 .page-header-info .author-img {
-	border-radius: 50%;
-	border: 1px solid #f1f1f1;
-	width: 70px;
-	height: 70px
+  border-radius: 50%;
+  border: 1px solid #f1f1f1;
+  width: 70px;
+  height: 70px;
 }
 
 .page-header-info .author-name {
-	font-size: 22px;
-	height: 30px;
-	line-height: 30px;
-	margin-top: 12px
+  font-size: 22px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 12px;
 }
 
 .page-header-info .author-name-logo {
-	display: inline-block;
-	width: 47px;
-	height: 20px;
-	background-size: 100% 100%;
-	background-image: url(@/assets/images/bookinfo/author-tag.png);
-	margin-right: 8px;
-	position: relative;
-	top: 2px
+  display: inline-block;
+  width: 47px;
+  height: 20px;
+  background-size: 100% 100%;
+  background-image: url(@/assets/images/bookinfo/author-tag.png);
+  margin-right: 8px;
+  position: relative;
+  top: 2px;
 }
 
 .page-header-info .author-desc {
-	margin: 8px auto 0;
-	font-size: 12px;
-	line-height: 17px;
-	width: 174px;
-	color: rgba(0, 0, 0, .4);
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	line-clamp: 2;
-	-webkit-box-orient: vertical
+  margin: 8px auto 0;
+  font-size: 12px;
+  line-height: 17px;
+  width: 174px;
+  color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .page-header-info .author-follow {
-	margin: 20px auto 0;
-	height: 36px;
-	width: 84px;
-	line-height: 34px;
-	padding: 0
+  margin: 20px auto 0;
+  height: 36px;
+  width: 84px;
+  line-height: 34px;
+  padding: 0;
 }
 </style>

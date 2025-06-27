@@ -8,11 +8,11 @@
     <div class="marquee-container">
       <div class="adapt_list" :style="{ '--scroll-duration': `${duration}s` }">
         <div class="item" v-for="(item, i) in adaptlist" :key="i" @click="goTo(item.path)">
-          <img :src="item.pic" alt="">
+          <img :src="item.pic" alt="" />
         </div>
         <!-- 复制一份，用于无缝滚动 -->
         <div class="item" v-for="(item, i) in adaptlist" :key="i + adaptlist.length">
-          <img :src="item.pic" alt="">
+          <img :src="item.pic" alt="" />
         </div>
       </div>
     </div>
@@ -26,9 +26,9 @@ import { getAdaptList } from '@/apis/home'
 
 // 定义数据类型
 interface AdaptItem {
-  id: number;
-  pic: string;
-  path: string;
+  id: number
+  pic: string
+  path: string
 }
 
 const adaptlist = ref<AdaptItem[]>([])
@@ -41,7 +41,7 @@ const fetchData = async () => {
   // 动态计算滚动时长
   const itemWidth = 215 + 20 // 卡片宽度+margin
   const totalWidth = adaptlist.value.length * itemWidth
-  const speed = 100  // 每秒滚动100px
+  const speed = 100 // 每秒滚动100px
   duration.value = totalWidth / speed
 }
 
@@ -73,7 +73,7 @@ onMounted(() => {
 }
 
 .tit h2:after {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   top: 50%;
@@ -136,7 +136,9 @@ onMounted(() => {
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .item img {

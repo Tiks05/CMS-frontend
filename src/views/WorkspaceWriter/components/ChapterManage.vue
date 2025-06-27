@@ -4,10 +4,19 @@
       <div class="book-info-container">
         <!-- 顶部返回 + 书名 -->
         <div class="book-info-header-back" @click="goBack">
-          <svg class="serial-icon serial-icon-general_arrow1_left icon-left" width="1em" height="1em"
-            viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M21.3076 26.6066C20.9171 26.9971 20.2839 26.9971 19.8934 26.6066L9.99387 16.7071C9.60335 16.3166 9.60335 15.6834 9.99387 15.2929L19.8934 5.3934C20.2839 5.00287 20.9171 5.00287 21.3076 5.3934C21.6981 5.78392 21.6981 6.41709 21.3076 6.80761L12.1152 16L21.3076 25.1924C21.6981 25.5829 21.6981 26.2161 21.3076 26.6066Z" />
+          <svg
+            class="serial-icon serial-icon-general_arrow1_left icon-left"
+            width="1em"
+            height="1em"
+            viewBox="0 0 32 32"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M21.3076 26.6066C20.9171 26.9971 20.2839 26.9971 19.8934 26.6066L9.99387 16.7071C9.60335 16.3166 9.60335 15.6834 9.99387 15.2929L19.8934 5.3934C20.2839 5.00287 20.9171 5.00287 21.3076 5.3934C21.6981 5.78392 21.6981 6.41709 21.3076 6.80761L12.1152 16L21.3076 25.1924C21.6981 25.5829 21.6981 26.2161 21.3076 26.6066Z"
+            />
           </svg>
           {{ bookTitle || '未命名书籍' }}
         </div>
@@ -18,17 +27,13 @@
             <div class="book-info-tabs-item tab-active">章节管理</div>
           </div>
           <div class="right-btns">
-						<button type="button" class="edit-volume" @click="openVolumeDialog">
-						  <span>编辑分卷</span>
-						</button>
+            <button type="button" class="edit-volume" @click="openVolumeDialog">
+              <span>编辑分卷</span>
+            </button>
 
-						<button
-						  type="button"
-						  class="add"
-						  @click="handleCreateChapter"
-						>
-						  <span>新建章节</span>
-						</button>
+            <button type="button" class="add" @click="handleCreateChapter">
+              <span>新建章节</span>
+            </button>
           </div>
         </div>
 
@@ -39,13 +44,9 @@
               <div class="item">
                 <select v-model="selectedVolumeId" @change="fetchList">
                   <option value="">全部分卷</option>
-                  <option
-									  v-for="(v, index) in volumeList"
-									  :key="v.id"
-									  :value="v.id"
-									>
-									  第{{ toChineseNumber(index + 1) }}卷：{{ v.title }}
-									</option>
+                  <option v-for="(v, index) in volumeList" :key="v.id" :value="v.id">
+                    第{{ toChineseNumber(index + 1) }}卷：{{ v.title }}
+                  </option>
                 </select>
               </div>
               <div class="item">
@@ -60,12 +61,26 @@
               </div>
             </div>
             <div class="seach">
-              <svg class="serial-icon serial-icon-general_search" width="1em" height="1em"
-                viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M15.5 4C9.14873 4 4 9.14873 4 15.5C4 21.8513 9.14873 27 15.5 27C18.3156 27 20.8949 25.9881 22.894 24.3082L26.2929 27.7071C26.6834 28.0976 27.3166 28.0976 27.7071 27.7071C28.0976 27.3166 28.0976 26.6834 27.7071 26.2929L24.3082 22.894C25.9881 20.8949 27 18.3156 27 15.5C27 9.14873 21.8513 4 15.5 4ZM6 15.5C6 10.2533 10.2533 6 15.5 6C20.7467 6 25 10.2533 25 15.5C25 20.7467 20.7467 25 15.5 25C10.2533 25 6 20.7467 6 15.5Z" />
+              <svg
+                class="serial-icon serial-icon-general_search"
+                width="1em"
+                height="1em"
+                viewBox="0 0 32 32"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5 4C9.14873 4 4 9.14873 4 15.5C4 21.8513 9.14873 27 15.5 27C18.3156 27 20.8949 25.9881 22.894 24.3082L26.2929 27.7071C26.6834 28.0976 27.3166 28.0976 27.7071 27.7071C28.0976 27.3166 28.0976 26.6834 27.7071 26.2929L24.3082 22.894C25.9881 20.8949 27 18.3156 27 15.5C27 9.14873 21.8513 4 15.5 4ZM6 15.5C6 10.2533 10.2533 6 15.5 6C20.7467 6 25 10.2533 25 15.5C25 20.7467 20.7467 25 15.5 25C10.2533 25 6 20.7467 6 15.5Z"
+                />
               </svg>
-              <input type="text" v-model="searchTitle" placeholder="搜索章节" @keyup.enter="fetchList" />
+              <input
+                type="text"
+                v-model="searchTitle"
+                placeholder="搜索章节"
+                @keyup.enter="fetchList"
+              />
             </div>
           </div>
 
@@ -86,7 +101,10 @@
               <td>{{ c.status_text }}</td>
               <td>{{ c.updated_at }}</td>
               <td>
-                <span class="btn btn1" @click="goTo(`/workspace/writer/edit-chapter/${bookId}/${c.id}`)"></span>
+                <span
+                  class="btn btn1"
+                  @click="goTo(`/workspace/writer/edit-chapter/${bookId}/${c.id}`)"
+                ></span>
                 <span class="btn btn2" @click="deleteChapter(c.id)"></span>
               </td>
             </tr>
@@ -105,39 +123,35 @@
     align-center
     :close-on-click-modal="false"
   >
-		<div
-		  v-for="(v, index) in tempVolumeList"
-		  :key="v.id"
-		  class="volume-item"
-		>
-		  <!-- 编辑状态 -->
-		  <template v-if="v.isEditing">
-		    <div class="title-editing">
-		      <el-tooltip content="最多输入20个字">
-		        <input v-model="v.title" class="volume-input" maxlength="20" />
-		      </el-tooltip>
-		      <div class="info">{{ v.title.length }}/20</div>
-		      <div class="action">
-		        <el-icon @click="confirmEditVolume(index)" class="icon-confirm">
-		          <Check />
-		        </el-icon>
-		        <el-icon @click="cancelEditVolume(index)" class="icon-cancel">
-		          <Close />
-		        </el-icon>
-		      </div>
-		    </div>
-		  </template>
-		
-		  <!-- 普通状态 -->
-		  <template v-else>
-		    <div class="title">第{{ toChineseNumber(index + 1) }}卷：{{ v.title }}</div>
-		    <div class="info">{{ getChapterCount(v.id) }}/20</div>
-		    <div class="action">
-		      <span class="btn btn1" @click="editVolume(index)"></span>
-		      <span class="btn btn2" @click="deleteVolume(index)"></span>
-		    </div>
-		  </template>
-		</div>
+    <div v-for="(v, index) in tempVolumeList" :key="v.id" class="volume-item">
+      <!-- 编辑状态 -->
+      <template v-if="v.isEditing">
+        <div class="title-editing">
+          <el-tooltip content="最多输入20个字">
+            <input v-model="v.title" class="volume-input" maxlength="20" />
+          </el-tooltip>
+          <div class="info">{{ v.title.length }}/20</div>
+          <div class="action">
+            <el-icon @click="confirmEditVolume(index)" class="icon-confirm">
+              <Check />
+            </el-icon>
+            <el-icon @click="cancelEditVolume(index)" class="icon-cancel">
+              <Close />
+            </el-icon>
+          </div>
+        </div>
+      </template>
+
+      <!-- 普通状态 -->
+      <template v-else>
+        <div class="title">第{{ toChineseNumber(index + 1) }}卷：{{ v.title }}</div>
+        <div class="info">{{ getChapterCount(v.id) }}/20</div>
+        <div class="action">
+          <span class="btn btn1" @click="editVolume(index)"></span>
+          <span class="btn btn2" @click="deleteVolume(index)"></span>
+        </div>
+      </template>
+    </div>
 
     <!-- Footer -->
     <template #footer>
@@ -149,10 +163,14 @@
             height="16"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            style="margin-right: 6px;"
+            style="margin-right: 6px"
           >
-            <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.2 0-372-166.8-372-372S306.8 140 512 140s372 166.8 372 372-166.8 372-372 372z" />
-            <path d="M704 480H544V320a32 32 0 1 0-64 0v160H320a32 32 0 1 0 0 64h160v160a32 32 0 1 0 64 0V544h160a32 32 0 1 0 0-64z" />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.2 0-372-166.8-372-372S306.8 140 512 140s372 166.8 372 372-166.8 372-372 372z"
+            />
+            <path
+              d="M704 480H544V320a32 32 0 1 0-64 0v160H320a32 32 0 1 0 0 64h160v160a32 32 0 1 0 64 0V544h160a32 32 0 1 0 0-64z"
+            />
           </svg>
           <span class="add-volume-text">新建分卷</span>
         </div>
@@ -160,9 +178,10 @@
           <el-button @click="showVolumeDialog = false">取消</el-button>
           <el-button
             type="primary"
-            style="background:#ff5f00;border-color:#ff5f00;"
+            style="background: #ff5f00; border-color: #ff5f00"
             @click="submitVolumeChange"
-          >确定</el-button>
+            >确定</el-button
+          >
         </div>
       </div>
     </template>
@@ -175,7 +194,13 @@ import { Check, Close } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useGoTo } from '@/composables/useGoTo'
-import { getChapterListByBookId, deleteChapterById, deleteVolumeById, createVolume, updateVolume } from '@/apis/workspace'
+import {
+  getChapterListByBookId,
+  deleteChapterById,
+  deleteVolumeById,
+  createVolume,
+  updateVolume
+} from '@/apis/workspace'
 
 const route = useRoute()
 const { goTo } = useGoTo()
@@ -321,11 +346,11 @@ const confirmEditVolume = async (index: number) => {
   try {
     if (String(v.id).startsWith('temp-')) {
       // 新建分卷（ID 是临时生成的）
-			await createVolume({
-			  book_id: bookId,
-			  title: v.title,
-			  sort: index + 1
-			})
+      await createVolume({
+        book_id: bookId,
+        title: v.title,
+        sort: index + 1
+      })
       ElMessage.success('新建成功')
     } else {
       // 修改已存在分卷
@@ -410,213 +435,215 @@ onMounted(fetchList)
 </script>
 
 <style scoped>
-	.tower_con {
-		margin-left: 250px;
-		padding-top: 15px;
-	}
+.tower_con {
+  margin-left: 250px;
+  padding-top: 15px;
+}
 
-	.serial-card {
-		padding: 32px;
-		background-color: #fff;
-		border-radius: 10px;
-	}
+.serial-card {
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 10px;
+}
 
-	.book-info-container .book-info-header-back {
-		align-items: center;
-		color: var(--Color_gray_100, #000);
-		display: flex;
-		font-size: 20px;
-		font-weight: 500;
-		line-height: 32px;
-		margin-bottom: 12px;
-		position: relative
-	}
+.book-info-container .book-info-header-back {
+  align-items: center;
+  color: var(--Color_gray_100, #000);
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 12px;
+  position: relative;
+}
 
-	.book-info-container .book-info-header-back:hover {
-		color: var(--Color_brand, #ff5f00);
-		cursor: pointer
-	}
+.book-info-container .book-info-header-back:hover {
+  color: var(--Color_brand, #ff5f00);
+  cursor: pointer;
+}
 
-	.book-info-container .book-info-header-back .icon-left {
-		font-size: 24px;
-		margin-right: 8px
-	}
+.book-info-container .book-info-header-back .icon-left {
+  font-size: 24px;
+  margin-right: 8px;
+}
 
-	.book-info-container .book-info-tabs {
-		display: flex;
-		padding: 32px 0 12px
-	}
+.book-info-container .book-info-tabs {
+  display: flex;
+  padding: 32px 0 12px;
+}
 
-	.book-info-container .book-info-tabs-item {
-		color: var(--Color_gray_40, #0006);
-		cursor: pointer;
-		font-size: 16px;
-		line-height: 26px
-	}
+.book-info-container .book-info-tabs-item {
+  color: var(--Color_gray_40, #0006);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 26px;
+}
 
-	.book-info-container .book-info-tabs-item:not(:last-of-type) {
-		margin-right: 40px
-	}
+.book-info-container .book-info-tabs-item:not(:last-of-type) {
+  margin-right: 40px;
+}
 
-	.book-info-container .book-info-tabs-item.tab-active {
-		color: #000;
-		font-weight: 500
-	}
+.book-info-container .book-info-tabs-item.tab-active {
+  color: #000;
+  font-weight: 500;
+}
 
-	.book-info-container .arco-tabs-content {
-		padding-top: 0 !important
-	}
+.book-info-container .arco-tabs-content {
+  padding-top: 0 !important;
+}
 
-	.right-btns button {
-		width: 96px;
-		margin-left: 18px;
-		height: 36px;
-		border-radius: 50px;
-		border: none;
-		font-size: 14px;
-		cursor: pointer;
-		background-color: rgba(0, 0, 0, 0.05);
-		position: relative;
-	}
+.right-btns button {
+  width: 96px;
+  margin-left: 18px;
+  height: 36px;
+  border-radius: 50px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+  position: relative;
+}
 
-	.right-btns button.add {
-		background-image: linear-gradient(96deg, #ff9a62 0, #ff5f00 100%);
-		color: #fff;
-	}
+.right-btns button.add {
+  background-image: linear-gradient(96deg, #ff9a62 0, #ff5f00 100%);
+  color: #fff;
+}
 
-	.right-btns button.add:hover {
-		background: #ff5f00;
-	}
+.right-btns button.add:hover {
+  background: #ff5f00;
+}
 
-	.arco-tabs {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+.arco-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-	.noveladmin .doing {
-		display: flex;
-		margin-top: 20px;
-		justify-content: space-between;
-		align-items: center;
-	}
+.noveladmin .doing {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
 
-	.noveladmin .doing .item {
-		padding: 0 15px;
-		display: inline-block;
-	}
+.noveladmin .doing .item {
+  padding: 0 15px;
+  display: inline-block;
+}
 
-	.noveladmin .doing .item {
-		background-color: #f5f5f5;
-		border-radius: 8px;
-		overflow: hidden;
-		margin-right: 20px;
-	}
+.noveladmin .doing .item {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
+}
 
-	.noveladmin .doing .item select {
-		height: 40px;
-		line-height: 40px;
-		background-color: #f5f5f5;
-		border: none;
-		width: 200px;
-		outline: none;
-		font-size: 14px;
-		color: #000;
+.noveladmin .doing .item select {
+  height: 40px;
+  line-height: 40px;
+  background-color: #f5f5f5;
+  border: none;
+  width: 200px;
+  outline: none;
+  font-size: 14px;
+  color: #000;
+}
 
-	}
+.noveladmin .doing .item span {
+  height: 40px;
+  line-height: 40px;
+  width: 80px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  color: #000;
+  margin-right: 15px;
+  border-right: 1px solid #e2e2e2;
+}
 
-	.noveladmin .doing .item span {
-		height: 40px;
-		line-height: 40px;
-		width: 80px;
-		text-align: center;
-		display: inline-block;
-		font-size: 14px;
-		color: #000;
-		margin-right: 15px;
-		border-right: 1px solid #e2e2e2;
-	}
+.noveladmin .doing .item select.select2 {
+  width: 120px;
+}
 
-	.noveladmin .doing .item select.select2 {
-		width: 120px;
-	}
+.noveladmin .seach {
+  background-color: #f5f5f5;
+  position: relative;
+  height: 40px;
+  border-radius: 8px;
+  width: 180px;
+  overflow: hidden;
+  padding-left: 30px;
+}
 
-	.noveladmin .seach {
-		background-color: #f5f5f5;
-		position: relative;
-		height: 40px;
-		border-radius: 8px;
-		width: 180px;
-		overflow: hidden;
-		padding-left: 30px;
-	}
+.noveladmin .seach svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-	.noveladmin .seach svg {
-		position: absolute;
-		left: 10px;
-		top: 50%;
-		transform: translateY(-50%);
-	}
+.noveladmin .seach input {
+  border: none;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 40px;
+  outline: none;
+}
 
-	.noveladmin .seach input {
-		border: none;
-		width: 100%;
-		background-color: #f5f5f5;
-		height: 40px;
-		outline: none;
+.noveladmin table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 20px;
+}
+.info_mass {
+  font-size: 12px;
+  color: #999;
+  margin-top: 20px;
+}
+.noveladmin table th {
+  height: 40px;
+  background-color: #fafafa;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #999;
+  border: none;
+}
 
-	}
+.noveladmin table td {
+  border-bottom: 1px solid #f5f5f5;
+  height: 64px;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #000;
+}
 
-	.noveladmin table {
-		width: 100%;
-		text-align: left;
-		border-collapse: collapse;
-		border-spacing: 0;
-		margin-top: 20px;
-	}
-	.info_mass{font-size: 12px;color: #999;margin-top: 20px;}
-	.noveladmin table th {
-		height: 40px;
-		background-color: #fafafa;
-		padding-left: 10px;
-		font-size: 14px;
-		color: #999;
-		border: none;
-	}
+.noveladmin table .btn {
+  width: 16px;
+  cursor: pointer;
+  height: 16px;
+  margin-right: 15px;
+  background-size: 16px auto;
+  display: inline-block;
+  background-repeat: no-repeat;
+}
 
-	.noveladmin table td {
-		border-bottom: 1px solid #f5f5f5;
-		height: 64px;
-		padding-left: 10px;
-		font-size: 14px;
-		color: #000;
-	}
+.noveladmin table .btn2 {
+  background-image: url('/src/assets/icons/work/d1.png');
+}
 
-	.noveladmin table .btn {
-		width: 16px;
-		cursor: pointer;
-		height: 16px;
-		margin-right: 15px;
-		background-size: 16px auto;
-		display: inline-block;
-		background-repeat: no-repeat;
-	}
+.noveladmin table .btn2:hover {
+  background-image: url('/src/assets/icons/work/d2.png');
+}
 
-	.noveladmin table .btn2 {
-		background-image: url('/src/assets/icons/work/d1.png');
-	}
+.noveladmin table .btn1 {
+  background-image: url('/src/assets/icons/work/d3.png');
+}
 
-	.noveladmin table .btn2:hover {
-		background-image: url('/src/assets/icons/work/d2.png');
-	}
-
-	.noveladmin table .btn1 {
-		background-image: url('/src/assets/icons/work/d3.png');
-	}
-
-	.noveladmin table .btn1:hover {
-		background-image: url('/src/assets/icons/work/d4.png');
-	}
+.noveladmin table .btn1:hover {
+  background-image: url('/src/assets/icons/work/d4.png');
+}
 .volume-item {
   display: flex;
   align-items: center;
@@ -626,7 +653,8 @@ onMounted(fetchList)
   margin-bottom: 8px;
 }
 
-.title, .title-editing {
+.title,
+.title-editing {
   flex: 1;
   font-size: 14px;
   color: #333;
@@ -660,14 +688,14 @@ onMounted(fetchList)
 }
 
 .btn1 {
-	margin-top: 5px;
+  margin-top: 5px;
   background-image: url('/src/assets/icons/work/d3.png');
 }
 .btn1:hover {
   background-image: url('/src/assets/icons/work/d4.png');
 }
 .btn2 {
-	margin-top: 5px;
+  margin-top: 5px;
   background-image: url('/src/assets/icons/work/d1.png');
 }
 .btn2:hover {
@@ -698,7 +726,7 @@ onMounted(fetchList)
 }
 
 .el-icon {
-	margin-top: 5px;
+  margin-top: 5px;
   font-size: 18px;
   margin-left: 10px;
   cursor: pointer;
@@ -708,5 +736,4 @@ onMounted(fetchList)
 .el-icon:hover {
   color: #ff5f00;
 }
-
 </style>

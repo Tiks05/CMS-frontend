@@ -30,7 +30,9 @@
 
       <span v-if="showEllipsis">...</span>
 
-      <button class="page-btn" :disabled="page === pageCount" @click="goPage(page + 1)">下一页</button>
+      <button class="page-btn" :disabled="page === pageCount" @click="goPage(page + 1)">
+        下一页
+      </button>
     </div>
   </div>
 </template>
@@ -41,15 +43,15 @@ import BookCard from './BookCard.vue'
 import { getBookList } from '@/apis/library'
 
 interface Book {
-	id: number
-	title: string
-	author: string
-	status: string
-	wordCount: number
-	intro: string
-	coverUrl: string
-	updatedAt: string
-	path: string
+  id: number
+  title: string
+  author: string
+  status: string
+  wordCount: number
+  intro: string
+  coverUrl: string
+  updatedAt: string
+  path: string
 }
 
 // 接收父组件传来的筛选条件
@@ -87,13 +89,8 @@ const visiblePages = computed(() => {
   }
 
   if (current <= 4) return [1, 2, 3, 4, 5]
-  if (current >= totalPages - 2) return [
-    totalPages - 4,
-    totalPages - 3,
-    totalPages - 2,
-    totalPages - 1,
-    totalPages
-  ]
+  if (current >= totalPages - 2)
+    return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages]
 
   return [current - 2, current - 1, current, current + 1, current + 2]
 })
@@ -130,10 +127,14 @@ const fetchBooks = async () => {
 }
 
 // 筛选条件变动时重新获取
-watch(() => props.filters, () => {
-  page.value = 1
-  fetchBooks()
-}, { immediate: true })
+watch(
+  () => props.filters,
+  () => {
+    page.value = 1
+    fetchBooks()
+  },
+  { immediate: true }
+)
 </script>
 
 <style scoped>

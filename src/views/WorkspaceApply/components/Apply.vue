@@ -28,7 +28,12 @@
         <div class="item">
           <div class="span"><b>*</b>笔名</div>
           <div class="input">
-            <input maxlength="10" type="text" placeholder="请勿使用特殊符号或有明显营销推广意图的名称" v-model="name" />
+            <input
+              maxlength="10"
+              type="text"
+              placeholder="请勿使用特殊符号或有明显营销推广意图的名称"
+              v-model="name"
+            />
             <div class="num">{{ name.length }} / 10</div>
           </div>
         </div>
@@ -37,7 +42,12 @@
         <div class="item">
           <div class="span"><b>*</b>作家简介</div>
           <div class="input">
-            <input maxlength="30" type="text" placeholder="10-30字，展示个人特色，写作经验，创作方向等" v-model="introduction" />
+            <input
+              maxlength="30"
+              type="text"
+              placeholder="10-30字，展示个人特色，写作经验，创作方向等"
+              v-model="introduction"
+            />
             <div class="num">{{ introduction.length }} / 30</div>
           </div>
         </div>
@@ -48,9 +58,7 @@
           <p>我已阅读并同意<a href="#">《个人信息保护声明》</a></p>
         </div>
 
-        <p v-if="hasInteracted && !apply" class="error-tip">
-          请阅读并同意《个人信息保护声明》
-        </p>
+        <p v-if="hasInteracted && !apply" class="error-tip">请阅读并同意《个人信息保护声明》</p>
 
         <!-- 提交按钮 -->
         <div class="submit">
@@ -88,8 +96,8 @@ const introduction = ref(userStore.signature || '')
 const apply = ref(false)
 const hasInteracted = ref(false)
 
-const previewAvatar = ref<string>('')        // 头像预览地址
-const avatarFile = ref<File | null>(null)    // 上传头像文件
+const previewAvatar = ref<string>('') // 头像预览地址
+const avatarFile = ref<File | null>(null) // 上传头像文件
 
 // 头像上传处理
 const handleAvatarChange = (e: Event) => {
@@ -112,10 +120,8 @@ const toggleApply = () => {
 }
 
 // 可提交判定逻辑
-const canSubmit = computed(() =>
-  name.value.trim() !== '' &&
-  introduction.value.trim().length >= 10 &&
-  apply.value === true
+const canSubmit = computed(
+  () => name.value.trim() !== '' && introduction.value.trim().length >= 10 && apply.value === true
 )
 
 const submitApply = async () => {
@@ -200,13 +206,13 @@ const navMenus = [
 }
 
 .fill_in .item {
-  display: flex;              /* 横向布局 */
+  display: flex; /* 横向布局 */
   align-items: center;
   margin-bottom: 30px;
 }
 
 .fill_in .item .span {
-  width: 100px;               /* 固定左边文字宽度 */
+  width: 100px; /* 固定左边文字宽度 */
   font-size: 14px;
   color: #aaa;
 }
@@ -217,7 +223,7 @@ const navMenus = [
 }
 
 .up_pic {
-  display: flex;              /* 右侧头像区域横向布局 */
+  display: flex; /* 右侧头像区域横向布局 */
   align-items: center;
   gap: 24px;
 }

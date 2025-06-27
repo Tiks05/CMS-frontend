@@ -32,7 +32,9 @@
           <div class="second">
             <div>粉丝数</div>
             <div class="bottom">
-              <span class="big">{{ writerHeader.writer.follower_count?.toLocaleString() || 0 }}</span>
+              <span class="big">{{
+                writerHeader.writer.follower_count?.toLocaleString() || 0
+              }}</span>
               <span class="unit">人</span>
             </div>
           </div>
@@ -45,7 +47,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -82,210 +83,211 @@ const daysAsAuthor = computed(() => {
 </script>
 
 <style scoped>
-	.bookindex_name {
-		margin-top: 64px;
-		background-color: #fff;
-		padding: 30px 0;
-	}
+.bookindex_name {
+  margin-top: 64px;
+  background-color: #fff;
+  padding: 30px 0;
+}
 
-	.bookindex_wp {
-		width: 1240px;
-		margin: 0 auto;
-	}
+.bookindex_wp {
+  width: 1240px;
+  margin: 0 auto;
+}
 
-	.bookindex_name .now_nav span {
-		font-size: 14px;
-		cursor: pointer;
-		line-height: 20px;
-		color: #333;
-	}
+.bookindex_name .now_nav span {
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 20px;
+  color: #333;
+}
 
-	.bookindex_name .now_nav span:hover {
-		color: #fa6725;
-	}
+.bookindex_name .now_nav span:hover {
+  color: #fa6725;
+}
 
-	.bookindex_name .now_nav em {
-		font-style: normal;
-		font-size: 14px;
-		color: rgba(0, 0, 0, .4);
-		cursor: pointer;
-	}
+.bookindex_name .now_nav em {
+  font-style: normal;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
 
-	.bookindex_name .now_nav em:hover {
-		color: #fa6725;
-	}
+.bookindex_name .now_nav em:hover {
+  color: #fa6725;
+}
 
-	.bookindex_name .now_nav b {
-		font-weight: normal;
-		font-size: 14px;
-		color: rgba(0, 0, 0, .4);
-		margin: 0 5px;
-	}
+.bookindex_name .now_nav b {
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+  margin: 0 5px;
+}
 
+.muye-author-home-page .author-message {
+  display: flex;
+  margin-top: 45px;
+  justify-content: flex-start;
+  background-image: url(@/assets/images/pic1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 272px;
+  background-position-y: bottom;
+  position: relative;
+  overflow: hidden;
+  background-color: #fcfcfc;
+  border-radius: 16px;
+}
 
-	.muye-author-home-page .author-message {
-		display: flex;
-		margin-top: 45px;
-		justify-content: flex-start;
-		background-image: url(@/assets/images/pic1.png);
-		background-repeat: no-repeat;
-		background-size: contain;
-		height: 272px;
-		background-position-y: bottom;
-		position: relative;
-		overflow: hidden;
-		background-color: #fcfcfc;
-		border-radius: 16px
-	}
+.muye-author-home-page .author-message .middle {
+  position: absolute;
+  width: 1px;
+  height: 500px;
+  left: 557px;
+  top: -4px;
+  transform: rotate(10deg);
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.06);
+}
 
-	.muye-author-home-page .author-message .middle {
-		position: absolute;
-		width: 1px;
-		height: 500px;
-		left: 557px;
-		top: -4px;
-		transform: rotate(10deg);
-		z-index: 1;
-		background: rgba(0, 0, 0, .06)
-	}
+.muye-author-home-page .author-message .left {
+  display: flex;
+  width: 500px;
+  margin-left: 58px;
+  margin-top: 65px;
+}
 
-	.muye-author-home-page .author-message .left {
-		display: flex;
-		width: 500px;
-		margin-left: 58px;
-		margin-top: 65px
-	}
+.muye-author-home-page .author-message .left .cover {
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  position: relative;
+  top: -6px;
+}
+.muye-author-home-page .author-message .left .cover img {
+  width: 100%;
+  vertical-align: middle;
+  border-radius: 50px;
+}
+.muye-author-home-page .author-message .left .text {
+  margin-left: 18px;
+  margin-top: 2px;
+  flex-shrink: 1;
+}
 
-	.muye-author-home-page .author-message .left .cover {
-		border-radius: 50%;
-		background: #fff;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 56px;
-		height: 56px;
-		flex-shrink: 0;
-		position: relative;
-		top: -6px
-	}
-	.muye-author-home-page .author-message .left .cover img{width: 100%;vertical-align: middle;
-		border-radius: 50px;
-	}
-	.muye-author-home-page .author-message .left .text {
-		margin-left: 18px;
-		margin-top: 2px;
-		flex-shrink: 1
-	}
+.muye-author-home-page .author-message .left .text .first {
+  display: flex;
+  align-items: center;
+  margin-top: -8px;
+}
 
-	.muye-author-home-page .author-message .left .text .first {
-		display: flex;
-		align-items: center;
-		margin-top: -8px
-	}
+.muye-author-home-page .author-message .left .text .first .title {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+}
 
-	.muye-author-home-page .author-message .left .text .first .title {
-		font-size: 20px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 24px;
-		letter-spacing: 0;
-		text-align: center
-	}
+.muye-author-home-page .author-message .left .text .first .mark {
+  margin-left: 7px;
+  border: 1px solid #fdae31;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0 6px 0 7px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #fdae31;
+}
 
-	.muye-author-home-page .author-message .left .text .first .mark {
-		margin-left: 7px;
-		border: 1px solid #fdae31;
-		box-sizing: border-box;
-		border-radius: 4px;
-		padding: 0 6px 0 7px;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 20px;
-		letter-spacing: 0;
-		color: #fdae31
-	}
+.muye-author-home-page .author-message .left .text .desc {
+  position: relative;
+  top: 8px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  width: 356px;
+}
 
-	.muye-author-home-page .author-message .left .text .desc {
-		position: relative;
-		top: 8px;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 24px;
-		width: 356px
-	}
+.muye-author-home-page .author-message .right {
+  display: flex;
+  margin-left: 117px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0;
+  color: #a4a4a4;
+}
 
-	.muye-author-home-page .author-message .right {
-		display: flex;
-		margin-left: 117px;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 14px;
-		letter-spacing: 0;
-		color: #a4a4a4
-	}
+.muye-author-home-page .author-message .right .big {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 30px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #000;
+}
 
-	.muye-author-home-page .author-message .right .big {
-		font-size: 24px;font-weight: bold;
-		line-height: 30px;
-		letter-spacing: 0;
-		text-align: left;
-		color: #000
-	}
+.muye-author-home-page .author-message .right .first,
+.muye-author-home-page .author-message .right .second,
+.muye-author-home-page .author-message .right .third {
+  width: 300px;
+}
 
-	.muye-author-home-page .author-message .right .first,
-	.muye-author-home-page .author-message .right .second,
-	.muye-author-home-page .author-message .right .third {
-		width: 300px
-	}
+.muye-author-home-page .author-message .right .first,
+.muye-author-home-page .author-message .right .third {
+  margin-top: 59px;
+}
 
-	.muye-author-home-page .author-message .right .first,
-	.muye-author-home-page .author-message .right .third {
-		margin-top: 59px
-	}
+.muye-author-home-page .author-message .right .first .bottom,
+.muye-author-home-page .author-message .right .third .bottom {
+  margin-top: 12px;
+  margin-left: 1px;
+}
 
-	.muye-author-home-page .author-message .right .first .bottom,
-	.muye-author-home-page .author-message .right .third .bottom {
-		margin-top: 12px;
-		margin-left: 1px
-	}
+.muye-author-home-page .author-message .right .first .unit,
+.muye-author-home-page .author-message .right .third .unit {
+  position: relative;
+  top: 0;
+  left: 9px;
+}
 
-	.muye-author-home-page .author-message .right .first .unit,
-	.muye-author-home-page .author-message .right .third .unit {
-		position: relative;
-		top: 0;
-		left: 9px
-	}
+.muye-author-home-page .author-message .right .first {
+  margin-left: 76px;
+}
 
-	.muye-author-home-page .author-message .right .first {
-		margin-left: 76px
-	}
+.muye-author-home-page .author-message .right .second {
+  margin-left: -302px;
+  margin-top: 157px;
+}
 
-	.muye-author-home-page .author-message .right .second {
-		margin-left: -302px;
-		margin-top: 157px
-	}
+.muye-author-home-page .author-message .right .second .bottom {
+  margin-top: 14px;
+  margin-left: -2px;
+}
 
-	.muye-author-home-page .author-message .right .second .bottom {
-		margin-top: 14px;
-		margin-left: -2px
-	}
+.muye-author-home-page .author-message .right .second .unit {
+  position: relative;
+  top: -2px;
+  left: 9px;
+}
 
-	.muye-author-home-page .author-message .right .second .unit {
-		position: relative;
-		top: -2px;
-		left: 9px
-	}
+.muye-author-home-page .author-message .right .third {
+  margin-left: -15px;
+}
 
-	.muye-author-home-page .author-message .right .third {
-		margin-left: -15px
-	}
-
-	.muye-author-home-page .author-message .right .third .unit {
-		left: 5px;
-		top: 0
-	}
-
+.muye-author-home-page .author-message .right .third .unit {
+  left: 5px;
+  top: 0;
+}
 </style>

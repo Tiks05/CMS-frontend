@@ -2,12 +2,7 @@
   <div class="comment-section">
     <div v-for="comment in comments" :key="comment.id" class="comment-item comment-level-1">
       <!-- 一级评论 -->
-      <CommentCard
-        :comment="comment"
-        :level="1"
-        @reply="handleReply"
-        @like="handleLike"
-      />
+      <CommentCard :comment="comment" :level="1" @reply="handleReply" @like="handleLike" />
 
       <!-- 回复框（一级） -->
       <div v-if="replyTarget?.id === comment.id" class="inline-reply-box reply-box-level-1">
@@ -17,7 +12,9 @@
           class="textarea-level-1"
           :rows="1"
           :disabled="!userStore.isLogin"
-          :placeholder="userStore.isLogin ? `回复 @${replyTarget?.user.name}：` : '请先登录后再评论'"
+          :placeholder="
+            userStore.isLogin ? `回复 @${replyTarget?.user.name}：` : '请先登录后再评论'
+          "
           @blur="handleBlur"
           @input="autoResize"
         />
@@ -37,17 +34,11 @@
           :key="sub.id"
           class="sub-comment-wrapper comment-level-2"
         >
-          <CommentCard
-            :comment="sub"
-            :level="2"
-            @reply="handleReply"
-            @like="handleLike"
-          >
+          <CommentCard :comment="sub" :level="2" @reply="handleReply" @like="handleLike">
             <template #content>
-              <span
-                v-if="sub.reply_to_user && sub.reply_to_user.id !== comment.user.id"
-              >
-                回复 <span class="at">@{{ sub.reply_to_user.name }}</span>：
+              <span v-if="sub.reply_to_user && sub.reply_to_user.id !== comment.user.id">
+                回复 <span class="at">@{{ sub.reply_to_user.name }}</span
+                >：
               </span>
               {{ sub.content }}
             </template>
@@ -61,7 +52,9 @@
               class="textarea-level-2"
               :rows="1"
               :disabled="!userStore.isLogin"
-              :placeholder="userStore.isLogin ? `回复 @${replyTarget?.user.name}：` : '请先登录后再评论'"
+              :placeholder="
+                userStore.isLogin ? `回复 @${replyTarget?.user.name}：` : '请先登录后再评论'
+              "
               @blur="handleBlur"
               @input="autoResize"
             />

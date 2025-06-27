@@ -8,11 +8,7 @@ export const getBookContent = (id: string | number) => {
   return request.get(`/bookinfo/content/${id}`)
 }
 
-export const getChapterContent = (
-  bookId: string,
-  volumeId: string,
-  chapterId: string
-) => {
+export const getChapterContent = (bookId: string, volumeId: string, chapterId: string) => {
   return request.get('/bookinfo/chapter', {
     params: {
       bookId,

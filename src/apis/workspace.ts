@@ -7,8 +7,7 @@ export const applyAsAuthor = (formData: FormData) =>
     }
   })
 
-export const getUserStats = (userId: number) => 
-  request.get(`/workspace/writer/stats/${userId}`)
+export const getUserStats = (userId: number) => request.get(`/workspace/writer/stats/${userId}`)
 
 export const getActiveList = (limit: number = 3) => {
   return request.get('/workspace/writer/notice-list', {
@@ -89,7 +88,9 @@ export function updateChapter(data: any) {
 }
 
 export const deleteVolumeById = (bookId: number, volumeId: number) =>
-  request.delete('/workspace/writer/delete-volume', { params: { book_id: bookId, volume_id: volumeId } })
+  request.delete('/workspace/writer/delete-volume', {
+    params: { book_id: bookId, volume_id: volumeId }
+  })
 
 // 更新分卷
 export const updateVolume = (data: { id: number; book_id: number; title: string }) =>

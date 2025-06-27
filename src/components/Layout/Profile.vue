@@ -7,7 +7,9 @@
         <img src="/src/assets/images/layout/profile/bg-1.png" alt="提示图" />
         <div class="text">
           <h5>完善你的个人资料，让更多人了解你</h5>
-          <p>1. 昵称、头像和简介将展示在你的个人主页；2. 好的个人资料能让你脱颖而出，吸引更多关注</p>
+          <p>
+            1. 昵称、头像和简介将展示在你的个人主页；2. 好的个人资料能让你脱颖而出，吸引更多关注
+          </p>
         </div>
       </div>
 
@@ -28,7 +30,12 @@
         <div class="item">
           <div class="span"><b>*</b>昵称</div>
           <div class="input">
-            <input maxlength="10" type="text" placeholder="请勿使用特殊符号或有明显营销推广意图的名称" v-model="name" />
+            <input
+              maxlength="10"
+              type="text"
+              placeholder="请勿使用特殊符号或有明显营销推广意图的名称"
+              v-model="name"
+            />
             <div class="num">{{ name.length }} / 10</div>
           </div>
         </div>
@@ -37,7 +44,12 @@
         <div class="item">
           <div class="span"><b>*</b>个人简介</div>
           <div class="input">
-            <input maxlength="30" type="text" placeholder="10-30字，写点有趣的介绍，让大家更了解你～" v-model="introduction" />
+            <input
+              maxlength="30"
+              type="text"
+              placeholder="10-30字，写点有趣的介绍，让大家更了解你～"
+              v-model="introduction"
+            />
             <div class="num">{{ introduction.length }} / 30</div>
           </div>
         </div>
@@ -48,9 +60,7 @@
           <p>我已阅读并同意<a href="#">《个人信息保护声明》</a></p>
         </div>
 
-        <p v-if="hasInteracted && !apply" class="error-tip">
-          请阅读并同意《个人信息保护声明》
-        </p>
+        <p v-if="hasInteracted && !apply" class="error-tip">请阅读并同意《个人信息保护声明》</p>
 
         <!-- 提交按钮 -->
         <div class="submit">
@@ -88,8 +98,8 @@ const introduction = ref(userStore.signature || '')
 const apply = ref(false)
 const hasInteracted = ref(false)
 
-const previewAvatar = ref<string>('')        // 头像预览地址
-const avatarFile = ref<File | null>(null)    // 上传头像文件
+const previewAvatar = ref<string>('') // 头像预览地址
+const avatarFile = ref<File | null>(null) // 上传头像文件
 
 // 头像上传处理
 const handleAvatarChange = (e: Event) => {
@@ -112,10 +122,8 @@ const toggleApply = () => {
 }
 
 // 可提交判定逻辑
-const canSubmit = computed(() =>
-  name.value.trim() !== '' &&
-  introduction.value.trim().length >= 10 &&
-  apply.value === true
+const canSubmit = computed(
+  () => name.value.trim() !== '' && introduction.value.trim().length >= 10 && apply.value === true
 )
 
 const submitApply = async () => {
@@ -148,7 +156,7 @@ const submitApply = async () => {
   }
 }
 
-const navMenus:any = []
+const navMenus: any = []
 </script>
 
 <style scoped>
@@ -194,13 +202,13 @@ const navMenus:any = []
 }
 
 .fill_in .item {
-  display: flex;              /* 横向布局 */
+  display: flex; /* 横向布局 */
   align-items: center;
   margin-bottom: 30px;
 }
 
 .fill_in .item .span {
-  width: 100px;               /* 固定左边文字宽度 */
+  width: 100px; /* 固定左边文字宽度 */
   font-size: 14px;
   color: #aaa;
 }
@@ -211,7 +219,7 @@ const navMenus:any = []
 }
 
 .up_pic {
-  display: flex;              /* 右侧头像区域横向布局 */
+  display: flex; /* 右侧头像区域横向布局 */
   align-items: center;
   gap: 24px;
 }

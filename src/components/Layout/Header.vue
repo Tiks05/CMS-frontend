@@ -26,6 +26,7 @@
           placeholder="请输入书名或作者名"
           :class="['search-input', { 'scrolled-input': isScrolled }]"
           clearable
+          @keyup.enter.native="handleSearch"
         >
           <template #suffix>
             <el-icon><Search /></el-icon>
@@ -39,12 +40,7 @@
           <span class="auth-link" @click="goTo('/login')">注册</span>
         </div>
 
-        <div
-          class="auth-dropdown"
-          v-else
-          @mouseenter="showDropdown"
-          @mouseleave="hideDropdown"
-        >
+        <div class="auth-dropdown" v-else @mouseenter="showDropdown" @mouseleave="hideDropdown">
           <div class="auth-avatar">
             <img :src="userStore.user?.avatar || defaultAvatar" class="avatar" />
             <span class="auth-username">{{ displayName }}</span>
@@ -81,9 +77,18 @@ const props = defineProps<{
 }>()
 
 const logo = new URL('@/assets/icons/logo/icons8-firebase-undefined-32.png', import.meta.url).href
-const defaultAvatar = new URL('@/assets/icons/Profile/icons8-user-pulsar-color-32.png', import.meta.url).href
-const iconUpdate = new URL('@/assets/icons/update/icons8-update-windows-11-outline-32.png', import.meta.url).href
-const iconLogout = new URL('@/assets/icons/logout/icons8-logout-windows-11-filled-32.png', import.meta.url).href
+const defaultAvatar = new URL(
+  '@/assets/icons/Profile/icons8-user-pulsar-color-32.png',
+  import.meta.url
+).href
+const iconUpdate = new URL(
+  '@/assets/icons/update/icons8-update-windows-11-outline-32.png',
+  import.meta.url
+).href
+const iconLogout = new URL(
+  '@/assets/icons/logout/icons8-logout-windows-11-filled-32.png',
+  import.meta.url
+).href
 
 const isActive = (path: string) => route.path === path
 
@@ -114,6 +119,13 @@ const isScrolled = ref(false)
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 10
 }
+
+const handleSearch = () => {
+  const keyword = searchText.value.trim()
+  if (!keyword) return
+  goTo(`/search?keyword=${encodeURIComponent(keyword)}`)
+}
+
 onMounted(() => window.addEventListener('scroll', handleScroll))
 onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 </script>
@@ -126,7 +138,9 @@ onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
   left: 0;
   z-index: 100;
   background: transparent;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .header.scrolled {

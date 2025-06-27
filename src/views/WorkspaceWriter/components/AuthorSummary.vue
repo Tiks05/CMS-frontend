@@ -6,20 +6,20 @@
         <div class="home-display-desc">
           <div class="desc-author font-1">
             {{ greetingText }}
-            <span style="margin-right: 8px;"></span>
-            <div class="home-display-desc-medal" style="margin-left: 4px;">
+            <span style="margin-right: 8px"></span>
+            <div class="home-display-desc-medal" style="margin-left: 4px">
               <div class="home-display-desc-medal-level">
                 <div
                   class="home-display-desc-medal-level-name"
-                  style="background: rgb(238, 230, 245); color: rgb(106, 93, 112);"
+                  style="background: rgb(238, 230, 245); color: rgb(106, 93, 112)"
                 >
-                  <span style="opacity: 0.8;">Lv.{{ userStore.user?.level || 0 }}</span>
+                  <span style="opacity: 0.8">Lv.{{ userStore.user?.level || 0 }}</span>
                 </div>
                 <img :src="levelImg" />
               </div>
             </div>
           </div>
-				<div class="desc-day font-2" v-html="greetingDescHtml"></div>
+          <div class="desc-day font-2" v-html="greetingDescHtml"></div>
         </div>
 
         <div class="home-display-detail home-display-fansnum">
@@ -123,8 +123,10 @@ const greetingDescHtml = computed(() => {
 
 const greetingImg = computed(() => {
   const hour = new Date().getHours()
-  if (hour < 12) return new URL('@/assets/images/workspace/writer/afternoon.gif', import.meta.url).href
-  if (hour < 18) return new URL('@/assets/images/workspace/writer/afternoon.gif', import.meta.url).href
+  if (hour < 12)
+    return new URL('@/assets/images/workspace/writer/afternoon.gif', import.meta.url).href
+  if (hour < 18)
+    return new URL('@/assets/images/workspace/writer/afternoon.gif', import.meta.url).href
   return new URL('@/assets/images/workspace/writer/afternoon.gif', import.meta.url).href
 })
 
@@ -136,206 +138,206 @@ const levelImg = computed(() => {
 
 <style scoped>
 .tower_con {
-	margin-left: 250px;
-	padding-top: 15px;
+  margin-left: 250px;
+  padding-top: 15px;
 }
 .serial-card {
-	background-color: #fff;
-	border-radius: 12px;
+  background-color: #fff;
+  border-radius: 12px;
 }
 .home-display {
-	align-items: center;
-	display: flex;
-	height: 120px;
-	overflow: hidden;
-	padding-left: 30px
+  align-items: center;
+  display: flex;
+  height: 120px;
+  overflow: hidden;
+  padding-left: 30px;
 }
 .home-display-img {
-	height: 70px;
-	margin-right: 12px
+  height: 70px;
+  margin-right: 12px;
 }
 .home-display-desc {
-	flex: 1
+  flex: 1;
 }
 .home-display-desc .desc-author {
-	align-items: center;
-	display: flex;
-	font-size: 20px;
-	font-weight: 500;
-	line-height: 28px
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
 }
 .home-display-desc .desc-day {
-	font-size: 14px;
-	line-height: 22px;
-	margin-top: 6px;
-	color: #999;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 6px;
+  color: #999;
 }
 .home-display-desc-medal {
-	height: 26px;
-	margin-left: 4px;
-	position: relative;
-	width: 26px
+  height: 26px;
+  margin-left: 4px;
+  position: relative;
+  width: 26px;
 }
 .home-display-desc-medal-tooltip.byte-tooltip.serial-tooltip-primary .byte-tooltip-content {
-	background: #fff;
-	border-radius: 6px;
-	box-shadow: 0 4px 20px #00000014;
-	height: 38px;
-	padding: 8px 14px
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px #00000014;
+  height: 38px;
+  padding: 8px 14px;
 }
 .home-display-desc-medal-tooltip.byte-tooltip.serial-tooltip-primary:after {
-	border-bottom: 4px solid #0000;
-	border-left: 4px solid #fff;
-	border-top: 4px solid #0000;
-	content: "";
-	left: 38px;
-	position: absolute;
-	top: 36px;
-	transform: rotate(90deg)
+  border-bottom: 4px solid #0000;
+  border-left: 4px solid #fff;
+  border-top: 4px solid #0000;
+  content: '';
+  left: 38px;
+  position: absolute;
+  top: 36px;
+  transform: rotate(90deg);
 }
 .home-display-desc-medal img {
-	height: 100%;
-	width: 100%
+  height: 100%;
+  width: 100%;
 }
 .home-display-desc-medal-fold {
-	height: 100%;
-	position: relative;
-	width: 100%
+  height: 100%;
+  position: relative;
+  width: 100%;
 }
 .home-display-desc-medal-fold img {
-	left: 0;
-	position: absolute;
-	top: 0
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 .home-display-desc-medal-fold-num {
-	align-items: center;
-	background: linear-gradient(315deg, #f6f6f6, #e5e5e5);
-	border-radius: 46px;
-	color: #0006;
-	display: flex;
-	font-family: PingFang SC;
-	font-size: 18px;
-	font-weight: 500;
-	height: 34px;
-	justify-content: flex-end;
-	left: 5px;
-	padding-left: 40px;
-	padding-right: 12px;
-	position: absolute;
-	top: 50%;
-	transform: scale(.5);
-	transform-origin: 0 -50%
+  align-items: center;
+  background: linear-gradient(315deg, #f6f6f6, #e5e5e5);
+  border-radius: 46px;
+  color: #0006;
+  display: flex;
+  font-family: PingFang SC;
+  font-size: 18px;
+  font-weight: 500;
+  height: 34px;
+  justify-content: flex-end;
+  left: 5px;
+  padding-left: 40px;
+  padding-right: 12px;
+  position: absolute;
+  top: 50%;
+  transform: scale(0.5);
+  transform-origin: 0 -50%;
 }
 .home-display-desc-medal-fold-num span {
-	white-space: nowrap
+  white-space: nowrap;
 }
 .home-display-desc-medal-level {
-	height: 100%;
-	position: relative;
-	width: 100%
+  height: 100%;
+  position: relative;
+  width: 100%;
 }
 .home-display-desc-medal-level img {
-	left: 0;
-	position: absolute;
-	top: 0
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 .home-display-desc-medal-level-name {
-	align-items: center;
-	background: linear-gradient(315deg, #f6f6f6, #e5e5e5);
-	border-radius: 46px;
-	color: #0006;
-	display: flex;
-	font-family: PingFang SC;
-	font-size: 18px;
-	font-weight: 500;
-	height: 34px;
-	justify-content: flex-end;
-	left: 5px;
-	padding-left: 42px;
-	padding-right: 18px;
-	position: absolute;
-	top: 50%;
-	transform: scale(.5);
-	transform-origin: 0 -50%
+  align-items: center;
+  background: linear-gradient(315deg, #f6f6f6, #e5e5e5);
+  border-radius: 46px;
+  color: #0006;
+  display: flex;
+  font-family: PingFang SC;
+  font-size: 18px;
+  font-weight: 500;
+  height: 34px;
+  justify-content: flex-end;
+  left: 5px;
+  padding-left: 42px;
+  padding-right: 18px;
+  position: absolute;
+  top: 50%;
+  transform: scale(0.5);
+  transform-origin: 0 -50%;
 }
 .home-display-desc-medal-level-name span {
-	white-space: nowrap
+  white-space: nowrap;
 }
 .home-display-desc-medal-collect {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 8px 2px;
-	width: 292px
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px 2px;
+  width: 292px;
 }
 .home-display-desc-medal-collect-item {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	margin-right: 12px
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: 12px;
 }
 .home-display-desc-medal-collect-item:nth-child(4n) {
-	margin-right: 0
+  margin-right: 0;
 }
-.home-display-desc-medal-collect-item:nth-child(n+5) {
-	margin-top: 12px
+.home-display-desc-medal-collect-item:nth-child(n + 5) {
+  margin-top: 12px;
 }
 .home-display-desc-medal-collect-item-cover {
-	height: 64px;
-	width: 64px
+  height: 64px;
+  width: 64px;
 }
 .home-display-desc-medal-collect-item-name {
-	color: #000c;
-	font-family: PingFang SC;
-	font-size: 12px;
-	line-height: 20px;
-	margin-top: 2px;
-	text-align: center
+  color: #000c;
+  font-family: PingFang SC;
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 2px;
+  text-align: center;
 }
 .home-display-desc-level-medal {
-	height: 24px;
-	width: 24px
+  height: 24px;
+  width: 24px;
 }
 .home-display-detail {
-	flex: 0 0 150px
+  flex: 0 0 150px;
 }
 .home-display-detail .detail-label {
-	align-items: center;
-	color: #999;
-	display: flex;
-	font-size: 14px;
-	line-height: 22px
+  align-items: center;
+  color: #999;
+  display: flex;
+  font-size: 14px;
+  line-height: 22px;
 }
 .home-display-detail .detail-label span {
-	margin-left: 6px
+  margin-left: 6px;
 }
 .home-display-detail .detail-count {
-	font-family: SFProText;
-	font-size: 24px;
-	font-weight: 500;
-	line-height: 32px;
-	margin-top: 4px
+  font-family: SFProText;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 4px;
 }
 .home-display-wordnum {
-	flex: 0 0 150px
+  flex: 0 0 150px;
 }
 .home-display-fansnum {
-	flex: 0 0 190px
+  flex: 0 0 190px;
 }
 .tower_wp {
-	width: 100%;
-	margin-top: 15px;
-	overflow: hidden;
+  width: 100%;
+  margin-top: 15px;
+  overflow: hidden;
 }
 .tower_wp .tower_left {
-	width: 552px;
-	float: left;
+  width: 552px;
+  float: left;
 }
 .tower_wp .tower_right {
-	width: 426px;
-	float: right;
+  width: 426px;
+  float: right;
 }
 
 :deep(.highlight) {
-	color: #ff5f00;
+  color: #ff5f00;
 }
 </style>

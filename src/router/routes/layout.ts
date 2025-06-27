@@ -28,6 +28,12 @@ const ModuleRoutes: RouteRecordRaw[] = [
     name: 'Profile',
     component: () => import('@/components/Layout/Profile.vue'),
     meta: { title: '个人信息', requiresAuth: true }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('@/components/Layout/Search.vue'),
+    meta: { title: '搜索结果页', requiresAuth: false }
   }
 ]
 

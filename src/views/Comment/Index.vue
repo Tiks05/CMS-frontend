@@ -92,7 +92,6 @@ const navMenus = [
 ]
 </script>
 
-
 <style scoped>
 .comment-page {
   background-color: #f8f8f8;
@@ -139,7 +138,7 @@ const navMenus = [
   flex: 1;
   min-width: 240px;
   max-width: 800px;
-  min-height: 48px;     /* 1 行高度 */
+  min-height: 48px; /* 1 行高度 */
   max-height: calc(65px * 3); /* 最多显示 3 行（约96px） */
   padding: 6px 12px;
   font-size: 30px;
@@ -147,7 +146,7 @@ const navMenus = [
   border: 1px solid #ddd;
   border-radius: 6px;
   resize: none;
-  overflow-y: auto;        /* 超过 3 行出现滚动条 */
+  overflow-y: auto; /* 超过 3 行出现滚动条 */
   box-sizing: border-box;
   word-break: break-word;
   white-space: pre-wrap;

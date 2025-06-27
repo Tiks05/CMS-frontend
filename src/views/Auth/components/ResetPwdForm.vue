@@ -47,12 +47,7 @@
           size="large"
           class="input-rounded code-input"
         />
-        <el-button
-          size="large"
-          class="code-btn"
-          :disabled="!canSendCode"
-          @click="handleSendCode"
-        >
+        <el-button size="large" class="code-btn" :disabled="!canSendCode" @click="handleSendCode">
           获取验证码
         </el-button>
       </div>
@@ -91,9 +86,8 @@ const form = reactive({
 })
 
 const canSendCode = computed(() => form.account.trim() !== '')
-const canSubmit = computed(() =>
-  form.account && form.password && form.confirm && form.code &&
-  form.password === form.confirm
+const canSubmit = computed(
+  () => form.account && form.password && form.confirm && form.code && form.password === form.confirm
 )
 
 const handleSendCode = () => {

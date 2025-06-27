@@ -3,11 +3,19 @@
     <div class="serial-card">
       <div class="book-info-container">
         <div class="book-info-header-back" @click="goBack">
-          <svg class="serial-icon serial-icon-general_arrow1_left icon-left" width="1em" height="1em"
-               viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M21.3076 26.6066C20.9171 26.9971 20.2839 26.9971 19.8934 26.6066L9.99387 16.7071C9.60335 16.3166 9.60335 15.6834 9.99387 15.2929L19.8934 5.3934C20.2839 5.00287 20.9171 5.00287 21.3076 5.3934C21.6981 5.78392 21.6981 6.41709 21.3076 6.80761L12.1152 16L21.3076 25.1924C21.6981 25.5829 21.6981 26.2161 21.3076 26.6066Z">
-            </path>
+          <svg
+            class="serial-icon serial-icon-general_arrow1_left icon-left"
+            width="1em"
+            height="1em"
+            viewBox="0 0 32 32"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M21.3076 26.6066C20.9171 26.9971 20.2839 26.9971 19.8934 26.6066L9.99387 16.7071C9.60335 16.3166 9.60335 15.6834 9.99387 15.2929L19.8934 5.3934C20.2839 5.00287 20.9171 5.00287 21.3076 5.3934C21.6981 5.78392 21.6981 6.41709 21.3076 6.80761L12.1152 16L21.3076 25.1924C21.6981 25.5829 21.6981 26.2161 21.3076 26.6066Z"
+            ></path>
           </svg>
           创建作品
         </div>
@@ -33,10 +41,22 @@
         <div class="item">
           <div class="span">目标读者</div>
           <label>
-            <input name="pictype" type="radio" class="choes_dan" value="男生" v-model="readerType" />男频
+            <input
+              name="pictype"
+              type="radio"
+              class="choes_dan"
+              value="男生"
+              v-model="readerType"
+            />男频
           </label>
           <label>
-            <input name="pictype" type="radio" class="choes_dan" value="女生" v-model="readerType" />女频
+            <input
+              name="pictype"
+              type="radio"
+              class="choes_dan"
+              value="女生"
+              v-model="readerType"
+            />女频
           </label>
         </div>
 
@@ -90,7 +110,7 @@ const coverPreview = ref<string>('/src/assets/images/workspace/writer/default_co
 const coverFile = ref<File | null>(null)
 
 const name = ref('')
-const readerType = ref<'1' | '2'>('1')  // 男频默认
+const readerType = ref<'1' | '2'>('1') // 男频默认
 const tag = ref('科幻末世')
 const hero1 = ref('')
 const hero2 = ref('')

@@ -86,7 +86,7 @@ const props = defineProps<{
   -webkit-box-orient: vertical;
   overflow: hidden;
   width: 208px;
-	line-clamp: 2; 
+  -webkit-line-clamp: 2;
 }
 
 .classcard .text .content {

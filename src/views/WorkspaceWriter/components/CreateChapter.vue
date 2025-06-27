@@ -4,10 +4,19 @@
     <div class="publish_header">
       <div class="left">
         <div class="pic" @click="goBack">
-          <svg class="serial-icon serial-icon-general_arrow1_left icon-left" width="1em" height="1em"
-            viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M21.3076 26.6066C20.9171 26.9971 20.2839 26.9971 19.8934 26.6066L9.99387 16.7071C9.60335 16.3166 9.60335 15.6834 9.99387 15.2929L19.8934 5.3934C20.2839 5.00287 20.9171 5.00287 21.3076 5.3934C21.6981 5.78392 21.6981 6.41709 21.3076 6.80761L12.1152 16L21.3076 25.1924C21.6981 25.5829 21.6981 26.2161 21.3076 26.6066Z" />
+          <svg
+            class="serial-icon serial-icon-general_arrow1_left icon-left"
+            width="1em"
+            height="1em"
+            viewBox="0 0 32 32"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M21.3076 26.6066C20.9171 26.9971 20.2839 26.9971 19.8934 26.6066L9.99387 16.7071C9.60335 16.3166 9.60335 15.6834 9.99387 15.2929L19.8934 5.3934C20.2839 5.00287 20.9171 5.00287 21.3076 5.3934C21.6981 5.78392 21.6981 6.41709 21.3076 6.80761L12.1152 16L21.3076 25.1924C21.6981 25.5829 21.6981 26.2161 21.3076 26.6066Z"
+            />
           </svg>
         </div>
         <div class="text">
@@ -19,16 +28,16 @@
             第{{ numberToChinese(lastVolumeId) }}卷：{{ lastVolumeTitle }}
           </p>
 
-					<!-- 最新章节 -->
-					<span>
-					  最新章节：
-					  <span v-if="latestChapterTitle">
-					    第{{ numberToChinese(latestVolumeSort) }}卷
-					    <span v-if="latestChapterNum > 0"> 第{{ latestChapterNum }}章</span>
-					    {{ latestChapterTitle }}（{{ latestChapterUpdateTime }}）
-					  </span>
-					  <span v-else>无</span>
-					</span>
+          <!-- 最新章节 -->
+          <span>
+            最新章节：
+            <span v-if="latestChapterTitle">
+              第{{ numberToChinese(latestVolumeSort) }}卷
+              <span v-if="latestChapterNum > 0"> 第{{ latestChapterNum }}章</span>
+              {{ latestChapterTitle }}（{{ latestChapterUpdateTime }}）
+            </span>
+            <span v-else>无</span>
+          </span>
         </div>
       </div>
       <div class="right">
@@ -58,7 +67,12 @@ import { ElMessage } from 'element-plus'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useGoTo } from '@/composables/useGoTo'
-import { getLastChapterByVolumeId, getLastChapterByBookId, createChapter, getLatestChapterByBookId } from '@/apis/workspace'
+import {
+  getLastChapterByVolumeId,
+  getLastChapterByBookId,
+  createChapter,
+  getLatestChapterByBookId
+} from '@/apis/workspace'
 
 const route = useRoute()
 const { goTo } = useGoTo()
@@ -128,7 +142,9 @@ const numberToChinese = (num: number): string => {
   const chineseNum = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
   const unit = ['', '十', '百', '千']
   if (num <= 10) return num === 10 ? '十' : chineseNum[num]
-  const digits = String(num).split('').map(n => parseInt(n))
+  const digits = String(num)
+    .split('')
+    .map(n => parseInt(n))
   let result = ''
   digits.forEach((digit, index) => {
     const pos = digits.length - index - 1
@@ -166,7 +182,7 @@ const confirm = async () => {
 
   const payload = {
     book_id: bookId,
-    volume_id: volumeId || null,  // 有就传，没有就传 null
+    volume_id: volumeId || null, // 有就传，没有就传 null
     title: chapterTitle.value,
     content,
     word_count: content.length
@@ -185,123 +201,123 @@ const confirm = async () => {
 
 <style scoped>
 .bg_hui {
-	background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .h70 {
-	height: 85px;
+  height: 85px;
 }
 
 .edit_con {
-	width: 1240px;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 60px 130px;
-	border-radius: 12px;
+  width: 1240px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 60px 130px;
+  border-radius: 12px;
 }
 
 .publish_header {
-	padding: 0 50px;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	display: flex;
-	height: 68px;
-	background-color: #fff;
-	justify-content: space-between;
-	align-items: center;
+  padding: 0 50px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  height: 68px;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .publish_header .left {
-	position: relative;
-	padding-left: 50px;
+  position: relative;
+  padding-left: 50px;
 }
 
 .publish_header .left .pic {
-	position: absolute;
-	left: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	background-color: #f5f5f5;
-	width: 34px;
-	height: 34px;
-	border-radius: 6px;
-	text-align: center;
-	line-height: 34px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f5f5f5;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 34px;
 }
 
 .publish_header .left .pic:hover {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 
 .publish_header .left span {
-	font-size: 12px;
-	color: #999;
+  font-size: 12px;
+  color: #999;
 }
 
 .publish_header .right span {
-	width: 96px;
-	height: 36px;
-	display: inline-block;
-	background-color: #f5f5f5;
-	text-align: center;
-	font-size: 14px;
-	color: #000;
-	cursor: pointer;
-	line-height: 36px;
-	border-radius: 50px;
-	margin-left: 25px;
+  width: 96px;
+  height: 36px;
+  display: inline-block;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  cursor: pointer;
+  line-height: 36px;
+  border-radius: 50px;
+  margin-left: 25px;
 }
 
 .publish_header .right span.btn1:hover {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 
 .publish_header .right span.btn2 {
-	color: #ff5f00;
-	background-color: #ffefe4;
+  color: #ff5f00;
+  background-color: #ffefe4;
 }
 
 .publish_header .right span.btn2:hover {
-	background-color: #fde3d0;
+  background-color: #fde3d0;
 }
 
 .edit_con .tit span {
-	font-size: 24px;
-	color: #999;
-	margin: 0 10px;
+  font-size: 24px;
+  color: #999;
+  margin: 0 10px;
 }
 
 .edit_con .tit input {
-	height: 24px;
-	font-size: 24px;
-	border: none;
-	outline: none;
+  height: 24px;
+  font-size: 24px;
+  border: none;
+  outline: none;
 }
 
 .edit_con .tit input.one {
-	width: 80px;
-	text-align: center;
-	border-bottom: 1px solid #ddd;
+  width: 80px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
 .edit_con .tit input.two {
-	width: 200px;
-	padding-left: 12px;
+  width: 200px;
+  padding-left: 12px;
 }
 
 .edit_con textarea {
-	width: 100%;
-	height: 600px;
-	resize: none;
-	border: none;
-	outline: none;
-	padding: 8px;
-	font-family: '微软雅黑';
-	margin-top: 20px;
-	font-size: 16px;
-	color: #333;
+  width: 100%;
+  height: 600px;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-family: '微软雅黑';
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
 }
 
 html,

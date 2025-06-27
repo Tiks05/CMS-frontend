@@ -8,11 +8,7 @@
       <div id="AuthorWork_left">
         <div class="left_con">
           <div class="item" v-for="(item, i) in menus" :key="i">
-            <div
-              class="tit"
-              v-if="item.child.length > 0"
-              @click="toggleMenu(item.id)"
-            >
+            <div class="tit" v-if="item.child.length > 0" @click="toggleMenu(item.id)">
               <div class="icon">
                 <img :src="item.pic" alt="" />
               </div>
@@ -21,12 +17,7 @@
                 <img src="/src/assets/images/workspace/writer/x.png" alt="" />
               </div>
             </div>
-            <div
-              class="tit"
-              v-else
-              @click="GoHover(item)"
-              :class="{ on: nowid == item.id }"
-            >
+            <div class="tit" v-else @click="GoHover(item)" :class="{ on: nowid == item.id }">
               <div class="icon">
                 <img :src="item.pic" class="img1" alt="" />
                 <img :src="item.pic2" class="img2" alt="" />
@@ -70,34 +61,54 @@ const navMenus = [
 ]
 
 const menus = [
-  { 
-    id: 1, 
-    path: '', 
-    label: '工作台', 
-    pic: '/src/assets/icons/work/i1.png', 
-    pic2: '/src/assets/icons/work/i1_2.png', 
-    child: [] 
+  {
+    id: 1,
+    path: '',
+    label: '工作台',
+    pic: '/src/assets/icons/work/i1.png',
+    pic2: '/src/assets/icons/work/i1_2.png',
+    child: []
   },
   {
-    id: 2, path: '', label: '作品管理', pic: '/src/assets/icons/work/i2.png', pic2: '', child: [
+    id: 2,
+    path: '',
+    label: '作品管理',
+    pic: '/src/assets/icons/work/i2.png',
+    pic2: '',
+    child: [
       { id: 21, path: '/workspace/writer/novel', label: '小说' },
       { id: 22, path: '/workspace/writer/story', label: '短故事' }
     ]
   },
   {
-    id: 3, path: '', label: '数据中心', pic: '/src/assets/icons/work/i3.png', pic2: '', child: [
+    id: 3,
+    path: '',
+    label: '数据中心',
+    pic: '/src/assets/icons/work/i3.png',
+    pic2: '',
+    child: [
       { id: 31, path: '/workspace/writer/noveldata', label: '小说数据' },
       { id: 32, path: '/workspace/writer/storydata', label: '短故事数据' }
     ]
   },
   {
-    id: 4, path: '', label: '收益分析', pic: '/src/assets/icons/work/i4.png', pic2: '', child: [
+    id: 4,
+    path: '',
+    label: '收益分析',
+    pic: '/src/assets/icons/work/i4.png',
+    pic2: '',
+    child: [
       { id: 41, path: '/workspace/writer/novelincome', label: '小说收益' },
       { id: 42, path: '/workspace/writer/storyincome', label: '短故事稿费' }
     ]
   },
   {
-    id: 5, path: '', label: '互动管理', pic: '/src/assets/icons/work/i5.png', pic2: '', child: [
+    id: 5,
+    path: '',
+    label: '互动管理',
+    pic: '/src/assets/icons/work/i5.png',
+    pic2: '',
+    child: [
       { id: 51, path: '/workspace/writer/comment', label: '评论管理' },
       { id: 52, path: '/workspace/writer/reward', label: '打赏管理' },
       { id: 53, path: '/workspace/writer/say', label: '有话说管理' },
@@ -105,34 +116,39 @@ const menus = [
     ]
   },
   {
-    id: 6, 
-    path: '/workspace/writer/inspiration', 
-    label: '开书灵感', 
-    pic: '/src/assets/icons/work/i6.png', 
-    pic2: '/src/assets/icons/work/i6_2.png', 
+    id: 6,
+    path: '/workspace/writer/inspiration',
+    label: '开书灵感',
+    pic: '/src/assets/icons/work/i6.png',
+    pic2: '/src/assets/icons/work/i6_2.png',
     child: []
   },
   {
-    id: 7, path: '', label: '作品运营', pic: '/src/assets/icons/work/i7.png', pic2: '', child: [
+    id: 7,
+    path: '',
+    label: '作品运营',
+    pic: '/src/assets/icons/work/i7.png',
+    pic2: '',
+    child: [
       { path: '/workspace/writer/source', label: '推荐素材' },
       { id: 71, path: '/workspace/writer/newbook', label: '新书预热' },
       { id: 72, path: '/workspace/writer/booktitle', label: '口碑书名' }
     ]
   },
   {
-    id: 8, 
-    path: '/workspace/writer/benefit', 
-    label: '福利管理', 
-    pic: '/src/assets/icons/work/i8.png', 
-    pic2: '/src/assets/icons/work/i8_2.png', 
+    id: 8,
+    path: '/workspace/writer/benefit',
+    label: '福利管理',
+    pic: '/src/assets/icons/work/i8.png',
+    pic2: '/src/assets/icons/work/i8_2.png',
     child: []
   },
   {
-    id: 9, 
-    path: '/workspace/writer/level', 
-    label: '作家等级', 
-    pic: '/src/assets/icons/work/i9.png', 
-    pic2: '/src/assets/icons/work/i9_2.png', 
+    id: 9,
+    path: '/workspace/writer/level',
+    label: '作家等级',
+    pic: '/src/assets/icons/work/i9.png',
+    pic2: '/src/assets/icons/work/i9_2.png',
     child: []
   }
 ]
@@ -244,7 +260,7 @@ const GoHover = (item: any) => {
   transform: translateY(-50%);
 }
 
-#AuthorWork_left .left_con .item .tit .rr>img {
+#AuthorWork_left .left_con .item .tit .rr > img {
   position: static;
   vertical-align: middle;
   width: 12px;

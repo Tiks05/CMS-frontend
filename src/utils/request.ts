@@ -21,7 +21,7 @@ httpInstance.interceptors.request.use(
     }
     return config
   },
-  (error) => {
+  error => {
     return Promise.reject(error)
   }
 )
@@ -36,7 +36,7 @@ httpInstance.interceptors.response.use(
       return Promise.reject(new Error(res.data.message || '请求失败'))
     }
   },
-  (error) => {
+  error => {
     return Promise.reject(error)
   }
 )

@@ -72,10 +72,7 @@ onMounted(async () => {
   const id = route.params.id as string | undefined
   if (id) {
     try {
-      const [headerRes, worksRes] = await Promise.all([
-        getWriterHeader(id),
-        getWriterWorks(id)
-      ])
+      const [headerRes, worksRes] = await Promise.all([getWriterHeader(id), getWriterWorks(id)])
       writerHeader.value = headerRes.data
       writerWorks.value = worksRes.data
     } catch (error) {

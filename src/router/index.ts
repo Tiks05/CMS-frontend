@@ -12,8 +12,8 @@ import CommentRoutes from './routes/comment'
 
 // 汇总所有路由
 const routes: RouteRecordRaw[] = [
-  ...ModuleRoutes,   // module.ts 中的 `/` 重定向 和 `/home`
-  ...authRoutes,   // `/login` 登录页面
+  ...ModuleRoutes, // module.ts 中的 `/` 重定向 和 `/home`
+  ...authRoutes, // `/login` 登录页面
   ...WriterRoutes,
   ...BookInfoRoutes,
   ...WriterInfoRoutes,

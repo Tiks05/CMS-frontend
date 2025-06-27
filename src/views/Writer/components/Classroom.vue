@@ -31,9 +31,7 @@
 
       <!-- 查看全部 -->
       <div class="more">
-        <span :style="{ backgroundImage: `url(${arrowRight})` }">
-          查看全部
-        </span>
+        <span :style="{ backgroundImage: `url(${arrowRight})` }"> 查看全部 </span>
       </div>
     </div>
   </div>
@@ -93,93 +91,93 @@ onMounted(loadClassroomData)
 
 <style scoped>
 .author_classroom {
-	padding: 80px 0;
-	background-color: #f6f6f6;
+  padding: 80px 0;
+  background-color: #f6f6f6;
 }
 
 .classroom_wp {
-	width: 1240px;
-	margin: 0 auto;
+  width: 1240px;
+  margin: 0 auto;
 }
 
 .author_classroom .title {
-	text-align: center;
-	font-size: 26px;
+  text-align: center;
+  font-size: 26px;
 }
 
 .author_classroom .title img {
-	width: 32px;
-	vertical-align: middle;
-	margin-left: 3px;
+  width: 32px;
+  vertical-align: middle;
+  margin-left: 3px;
 }
 
 .author_classroom .title span {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .author_classroom .type_list {
-	text-align: center;
-	margin-top: 32px;
+  text-align: center;
+  margin-top: 32px;
 }
 
 .author_classroom .type_list span {
-	height: 34px;
-	line-height: 34px;
-	padding: 0 16px;
-	cursor: pointer;
-	border-radius: 50px;
-	background-color: #f1f1f1;
-	display: inline-block;
-	margin: 0 6px;
-	font-size: 14px;
-	color: #666;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 16px;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: #f1f1f1;
+  display: inline-block;
+  margin: 0 6px;
+  font-size: 14px;
+  color: #666;
 }
 
 .author_classroom .type_list span:hover {
-	background-color: #e7e7e7;
+  background-color: #e7e7e7;
 }
 
 .author_classroom .type_list span.on {
-	background-color: #ff5f00;
-	color: #fff;
+  background-color: #ff5f00;
+  color: #fff;
 }
 
 .author_classroom .type_list span.on:hover {
-	background-color: #ff5f00;
+  background-color: #ff5f00;
 }
 
 .author_classroom .classroom_list {
-	overflow: hidden;
-	margin-left: -20px;
-	margin-top: 20px;
+  overflow: hidden;
+  margin-left: -20px;
+  margin-top: 20px;
 }
 
 .author_classroom .classroom_list .item {
-	width: 20%;
-	float: left;
-	padding-right: 20px;
-	margin-top: 20px;
+  width: 20%;
+  float: left;
+  padding-right: 20px;
+  margin-top: 20px;
 }
 
 .more {
-	text-align: center;
-	margin-top: 40px;
+  text-align: center;
+  margin-top: 40px;
 }
 
 .more span {
-	display: inline-block;
-	width: 150px;
-	height: 40px;
-	text-align: center;
-	cursor: pointer;
-	line-height: 40px;
-	background-color: #ececec;
-	margin-top: 15px;
-	border-radius: 50px;
-	background-size: 12px auto;
-	padding-right: 15px;
-	background-repeat: no-repeat;
-	background-position: 80% center;
-	background-image: url("v-bind(arrowRight)");
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 40px;
+  background-color: #ececec;
+  margin-top: 15px;
+  border-radius: 50px;
+  background-size: 12px auto;
+  padding-right: 15px;
+  background-repeat: no-repeat;
+  background-position: 80% center;
+  background-image: url('v-bind(arrowRight)');
 }
 </style>

@@ -1,19 +1,24 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #ff5f00, // ✅ 主色：番茄橙，统一勾选框颜色等主题控件
+      'base': #ff5f00,
+      // ✅ 主色：番茄橙，统一勾选框颜色等主题控件
     ),
     'success': (
-      'base': #24cc43, // ✅ 成功：亮绿
+      'base': #24cc43,
+      // ✅ 成功：亮绿
     ),
     'warning': (
-      'base': #fcab0b, // ✅ 警告：亮黄（略带橙）
+      'base': #fcab0b,
+      // ✅ 警告：亮黄（略带橙）
     ),
     'danger': (
-      'base': #e6353e, // ✅ 危险：深红（更沉稳）
+      'base': #e6353e,
+      // ✅ 危险：深红（更沉稳）
     ),
     'error': (
-      'base': #ee1a25, // ✅ 错误：同 danger，统一调性
-    ),
+      'base': #ee1a25,
+      // ✅ 错误：同 danger，统一调性
+    )
   )
 );

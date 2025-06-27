@@ -1,6 +1,8 @@
 /* base.scss：全局基础样式 */
 
-html, body, #app {
+html,
+body,
+#app {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -14,7 +16,15 @@ a {
   text-decoration: none;
 }
 
-ul, li, p, h1, h2, h3, h4, h5, h6 {
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
   list-style: none;

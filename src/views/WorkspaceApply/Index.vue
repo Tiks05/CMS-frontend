@@ -18,10 +18,11 @@ onMounted(() => {
 <style scoped>
 .workspace-loading {
   position: fixed;
-  left: 0; top: 0;
+  left: 0;
+  top: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;           /* 比页面其它内容高 */
+  z-index: 100; /* 比页面其它内容高 */
 }
 .workspace-loading img {
   position: absolute;

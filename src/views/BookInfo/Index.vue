@@ -1,9 +1,9 @@
-<template> 
+<template>
   <Header v-if="navMenus" :menus="navMenus" />
 
   <!-- 名称 -->
   <BookHeader v-if="bookHeader" :bookHeader="bookHeader" />
-  
+
   <!-- 目录 -->
   <BookContent v-if="bookContent" :bookContent="bookContent" />
 
@@ -48,7 +48,8 @@ interface Book {
   word_count: number
   tags: string
   updated_at?: string
-  max_chapter: number
+  latest_chapter: number
+  latest_chapter_title: string
 }
 
 interface BookHeaderData {
@@ -80,19 +81,14 @@ onMounted(async () => {
   const id = route.params.id as string | undefined
   if (id) {
     try {
-      const [headerRes, contentRes] = await Promise.all([
-        getBookHeader(id),
-        getBookContent(id)
-      ])
+      const [headerRes, contentRes] = await Promise.all([getBookHeader(id), getBookContent(id)])
       bookHeader.value = headerRes.data
       bookContent.value = contentRes.data
     } catch (error) {
       console.error('获取书籍详情失败:', error)
-      // 可根据需求加提示或跳转
     }
   }
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
