@@ -42,6 +42,10 @@ export function getBookDetail(bookId: number) {
   return request.get(`/workspace/writer/book-overview/${bookId}`)
 }
 
+export const deleteBookById = (id: number) => {
+  return request.delete(`/workspace/writer/delete-book/${id}`)
+}
+
 export function updateBookInfo(formData: FormData) {
   return request.post('/workspace/writer/update-book', formData)
 }

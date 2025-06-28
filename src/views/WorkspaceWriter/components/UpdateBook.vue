@@ -276,6 +276,10 @@ onMounted(() => {
   position: relative;
 }
 
+.noveledit .item input[type='radio'] {
+  accent-color: #ff5f00;
+}
+
 .noveledit .item .span {
   position: absolute;
   left: 0;

@@ -69,13 +69,20 @@
                   <div class="info-content-title" @click="goTo(item.path)">{{ item.title }}</div>
                   <div class="info-left">
                     <div class="desc">
-                      <span
-                        >最近更新：<span class="hoverup">{{ item.now }}</span></span
-                      >
+                      <span>
+                        最近更新：
+                        <span class="hoverup">
+                          {{
+                            item.latestChapterNum === 0
+                              ? '暂无章节'
+                              : `第${item.latestChapterNum}章 ${item.latestChapterTitle}`
+                          }}
+                        </span>
+                      </span>
                     </div>
                     <div class="detail">
                       <div class="detail-chapter">
-                        <span class="right-info-number">{{ item.chapter }}</span> 章
+                        <span class="right-info-number">{{ item.totalChapters }}</span> 章
                       </div>
                       <span class="detail-divider"></span>
                       <div class="detail-wordcount">
@@ -221,8 +228,9 @@ interface BookItem {
   id: number
   title: string
   pic: string
-  now: string
-  chapter: number
+  totalChapters: number // 总章节数
+  latestChapterNum: number // 最新章节的编号
+  latestChapterTitle: string // 最新章节名称
   words: number
   status: string
   path: string
@@ -425,6 +433,7 @@ onMounted(async () => {
   height: 160px;
   width: 120px;
   vertical-align: middle;
+  border-radius: 4px;
 }
 
 .book-item-info .book-cover .text {

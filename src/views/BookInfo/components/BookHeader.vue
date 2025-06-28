@@ -29,8 +29,12 @@
           </div>
           <div class="info-last" v-if="latestChapter != null || bookHeader.book.updated_at">
             <span class="info-last-title">
-              最近更新： 第{{ latestChapter }}章
-              <template v-if="latestChapterTitle"> {{ latestChapterTitle }}</template>
+              最近更新：
+              <template v-if="latestChapter">
+                第{{ latestChapter }}章
+                <template v-if="latestChapterTitle"> {{ latestChapterTitle }}</template>
+              </template>
+              <template v-else> 暂无章节 </template>
             </span>
             <span class="info-last-time">{{ bookHeader.book.updated_at }}</span>
           </div>

@@ -56,7 +56,7 @@
                   <div class="book-detail-header">
                     <span class="weight-1 font-1">基础信息</span>
                     <div class="right-btns">
-                      <button type="button">
+                      <button type="button" @click="handleDeleteBook">
                         <span>作品相关</span>
                         <img src="@/assets/images/workspace/writer/x.png" alt="" />
                         <div class="down_link">
@@ -218,7 +218,8 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useGoTo } from '@/composables/useGoTo'
-import { getBookDetail } from '@/apis/workspace'
+import { ElMessageBox, ElMessage } from 'element-plus'
+import { getBookDetail, deleteBookById } from '@/apis/workspace'
 import FooterCopyright from '@/views/WorkspaceWriter/components/FooterCopyright.vue'
 
 export interface BookDetail {
@@ -246,6 +247,22 @@ const fetchBookDetail = async () => {
   if (!id) return
   const res = await getBookDetail(id)
   bookDetail.value = res.data
+}
+
+const handleDeleteBook = () => {
+  ElMessageBox.confirm('删除后无法恢复，确定要删除该作品吗？', '警告', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(async () => {
+    try {
+      await deleteBookById(bookDetail.value.id)
+      ElMessage.success('删除成功')
+      goTo('/workspace/writer') // 或其他返回页面
+    } catch (err) {
+      ElMessage.error('删除失败')
+    }
+  })
 }
 
 const goBack = () => {
@@ -586,6 +603,7 @@ onMounted(() => {
   width: 80px;
   height: 107px;
   vertical-align: middle;
+  border-radius: 4px;
 }
 
 .sign-manage-explain {

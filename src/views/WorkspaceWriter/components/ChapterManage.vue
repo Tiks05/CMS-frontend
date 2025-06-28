@@ -318,7 +318,7 @@ const addVolume = () => {
   tempVolumeList.value.forEach(v => (v.isEditing = false))
 
   tempVolumeList.value.push({
-    id: 'temp-' + Date.now(), // ⬅ 使用字符串 ID 作为临时标识
+    id: 'temp-' + Date.now(), // 临时标识
     book_id: bookId,
     title: '',
     sort: tempVolumeList.value.length + 1,
@@ -338,14 +338,13 @@ const editVolume = (index: number) => {
 const confirmEditVolume = async (index: number) => {
   const v = tempVolumeList.value[index]
 
-  // 如果没有输入标题，默认使用“第X卷”
+  // 没有输入标题就用默认
   if (!v.title.trim()) {
     v.title = `第${toChineseNumber(index + 1)}卷`
   }
 
   try {
     if (String(v.id).startsWith('temp-')) {
-      // 新建分卷（ID 是临时生成的）
       await createVolume({
         book_id: bookId,
         title: v.title,
@@ -353,7 +352,6 @@ const confirmEditVolume = async (index: number) => {
       })
       ElMessage.success('新建成功')
     } else {
-      // 修改已存在分卷
       await updateVolume({
         id: v.id,
         book_id: bookId,
@@ -362,7 +360,8 @@ const confirmEditVolume = async (index: number) => {
       ElMessage.success('修改成功')
     }
 
-    v.isEditing = false
+    // ✅ 修改点：关闭弹窗并刷新列表
+    showVolumeDialog.value = false
     await fetchList()
   } catch (err) {
     console.error('保存失败', err)

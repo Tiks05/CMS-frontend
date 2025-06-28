@@ -339,5 +339,6 @@ const levelImg = computed(() => {
 
 :deep(.highlight) {
   color: #ff5f00;
+  font-weight: normal;
 }
 </style>
